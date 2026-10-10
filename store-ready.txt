@@ -1,0 +1,29 @@
+# مرشد الطائف — جاهزية App Store / Google Play (v1.0.0)
+
+## 1) ما تم تنفيذه تقنياً
+- تطبيق ويب تقدمي PWA: يعمل دون اتصال بعد أول تحميل (sw.js + cache).
+- ملف manifest.webmanifest + أيقونة icon.svg (512) + theme-color #8e2a4a.
+- دعم التثبيت: زر "ثبّت التطبيق" يستخدم beforeinstallprompt، وبديل يدوي (إضافة للشاشة الرئيسية).
+- حفظ اللغة في localStorage، واتجاه RTL/LTR تلقائي.
+- meta كاملة: viewport-fit, apple-mobile-web-app-capable, og tags.
+- الخصوصية: لا جمع بيانات — جاهز لأسئلة App Store (Data Collection: None).
+
+## 2) للتغليف والنشر
+- iOS (App Store): ارفع مجلد التطبيق إلى PWABuilder.com ← اختر iOS ← ولّد مشروع Xcode ← وقّع وارفع عبر App Store Connect.
+- Android (Play): PWABuilder ← Android AAB ← ارفع على Play Console.
+- بديل Capacitor:
+  npm i @capacitor/core @capacitor/cli && npx cap init "Taif Guide" com.taif.guide && npx cap add ios android
+
+## 3) نصوص المتجر المقترحة (انسخها)
+- الاسم: مرشد الطائف — Taif Rose Guide
+- العنوان الفرعي: تاريخ موثق وطبيعة حية بلا مبالغة
+- الوصف (عربي): مرشد عربي-إنجليزي للطائف: يشرح الأماكن السياحية والأثرية والزراعية بصدق (ماذا سترى، متى تأتي، كم تحتاج)، مع أحدث صور الزوار ومواقع جوجل ماب، ومواسم الورد والفاكهة والعسل، ومسارات الهايكنج بتقييم صادق. يعمل دون اتصال.
+- Description (EN): Honest Arabic–English Taif guide: verified history, farm seasons, hiking safety, Google photos & maps. Offline-capable.
+- الكلمات: Taif, rose, الطائف, الورد الطائفي, hiking, السعودية
+- الفئة: Travel / Education. العمر: 4+.
+
+## 4) لقطات مطلوبة (6.5 و 5.5 بوصة)
+1 الرئيسية مع الوردة 2 شبكة الأماكن 3 نافذة التفاصيل + خريطة 4 المواسم 5 الهايكنج
+
+## 5) ملاحظة المحتوى
+كل الصور الفوتوغرافية الحديثة عبر روابط Google Maps (صور زوار حقيقية) — لا صور مزيفة داخل التطبيق. الرسوم مائية توضيحية لوردة طائفية حقيقية ثلاثينية البتلات.

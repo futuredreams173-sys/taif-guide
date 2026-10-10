@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>مرشد الطائف السياحي</title>
+<meta name="description" content="تطبيق مرشد الطائف: يعرفك بأهداف زيارتك، ويشرح الأماكن السياحية والأثرية والزراعية بصدق، مع صور الزوار ومواقع جوجل ماب. عربي وإنجليزي.">
+<meta name="theme-color" content="#8e2a4a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="مرشد الطائف">
+<meta property="og:title" content="مرشد الطائف — Taif Rose Guide">
+<meta property="og:description" content="تاريخ موثق، أماكن أثرية وزراعية، هايكنج، مواسم الورد.">
+<meta property="og:type" content="website">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+:root{--paper:#fdf6f0;--rose-deep:#8e2a4a;--rose:#c14a6e;--rose-mid:#e79fb6;--rose-pale:#f7c9d6;--rose-mist:#fceef2;--sepal:#6a8f4e;--stamen:#d9a416;--leaf-deep:#1e4433;--leaf:#2f7350;--gold:#a97e14;--ink:#2b2522;--muted:#75685f;--card:#fffdfa;--shadow:0 18px 50px rgba(142,42,74,.13),0 4px 14px rgba(30,68,51,.09)}
+.petal-div{display:flex;align-items:center;gap:.6rem;margin:.4rem 0 .8rem;color:var(--rose-deep);font-weight:800;font-size:.85rem}
+.petal-div::before,.petal-div::after{content:"";height:2px;flex:1;border-radius:2px;background:linear-gradient(90deg,transparent,var(--rose-mid),transparent)}
+.petal-ico{width:26px;height:26px;flex:none}
+.distill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem}
+@media(max-width:960px){.distill-grid{grid-template-columns:1fr}}
+.still-badge{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,#fff,#fdeef3);border:1px solid var(--rose-pale);border-radius:999px;padding:.2rem .8rem;font-size:.76rem;font-weight:800;color:var(--rose-deep)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:"Tajawal","Segoe UI",Tahoma,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;background-image:radial-gradient(900px 400px at 85% -50px,#fbe3ea 0%,transparent 60%),radial-gradient(800px 380px at 5% 10%,#e8f2e8 0%,transparent 60%)}
+h1,h2{font-family:"Aref Ruqaa","Tajawal",serif;line-height:1.55}
+.topbar{background:var(--leaf-deep);color:#ffeef3;font-size:.83rem;padding:.45rem 1rem;text-align:center}
+header{position:sticky;top:0;z-index:60;background:rgba(253,249,243,.9);backdrop-filter:blur(14px);border-bottom:1px solid #ecdcd9}
+.nav{max-width:1220px;margin:auto;display:flex;align-items:center;gap:.9rem;padding:.6rem 1rem}
+.brand{display:flex;align-items:center;gap:.7rem;font-weight:900}
+.brand-mark{width:52px;height:52px;border-radius:50%;overflow:hidden;background:#fff;border:2px solid #fff;box-shadow:0 6px 18px rgba(142,42,74,.3);flex:none}
+.brand-mark svg{width:100%;height:100%;display:block}
+.brand small{display:block;font-weight:400;color:var(--muted);font-size:.72rem}
+.links{margin-inline-start:auto;display:flex;gap:.3rem;align-items:center;flex-wrap:wrap}
+.links a{text-decoration:none;padding:.45rem .8rem;border-radius:999px;font-size:.88rem;font-weight:500;color:inherit}
+.links a:hover{background:var(--rose-mist);color:var(--rose-deep)}
+.lang-toggle{background:var(--rose-deep);color:#fff;border:0;border-radius:999px;padding:.55rem 1.1rem;font-weight:800;cursor:pointer}
+.burger{display:none;background:#fff;border:1px solid #e8d5d5;border-radius:12px;padding:.4rem .75rem;font-size:1.2rem}
+.hero{max-width:1220px;margin:1rem auto 0;padding:0 1rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;align-items:stretch}
+.hero-art{position:relative;border-radius:28px;min-height:440px;overflow:hidden;box-shadow:var(--shadow);border:1px solid #f0d8df;background:linear-gradient(165deg,#fff7f9 0%,#f9dbe4 38%,#eef3ea 78%,#fdf1da 100%)}
+.hero-art svg.rose{position:absolute;inset:0;width:100%;height:100%}
+.rose-cap{position:absolute;bottom:.8rem;inset-inline:.8rem;background:rgba(255,255,255,.92);border-radius:14px;padding:.55rem .9rem;font-size:.78rem;color:#5b4a44;border:1px solid #f0d8df}
+.hero-copy{background:var(--card);border-radius:28px;padding:1.9rem 1.7rem;box-shadow:var(--shadow);border:1px solid #f0e2d6}
+.eyebrow{display:inline-flex;background:var(--rose-mist);border:1px solid #f0c7d3;color:var(--rose-deep);border-radius:999px;padding:.25rem .9rem;font-size:.8rem;font-weight:800}
+.hero-copy h1{font-size:clamp(1.9rem,4.4vw,2.9rem);margin:.7rem 0 .4rem;color:var(--leaf-deep)}
+.hero-copy h1 span{color:var(--rose-deep)}
+.lead{color:#4c443f;font-size:1.02rem}
+.purpose{background:#f4faf4;border:1px solid #cfe3cf;border-radius:16px;padding:.8rem 1rem;font-size:.92rem;margin-top:.9rem}
+.cta-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+.btn{border:0;cursor:pointer;border-radius:999px;padding:.75rem 1.25rem;font-weight:800;font-size:.93rem;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
+.btn-rose{background:linear-gradient(135deg,var(--rose-deep),var(--rose));color:#fff}.btn-leaf{background:var(--leaf-deep);color:#fff}
+.mini-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-top:1.1rem}
+.mini-stats div{background:#fff;border:1px solid #f0d9e1;border-radius:14px;padding:.55rem;text-align:center}
+.mini-stats strong{display:block;color:var(--rose-deep)}.mini-stats span{font-size:.73rem;color:var(--muted)}
+.wrap{max-width:1220px;margin:auto;padding:1rem 1rem 3rem}
+.section{background:var(--card);border-radius:26px;box-shadow:var(--shadow);padding:1.7rem;border:1px solid #f0e2d6;margin:1.3rem 0;position:relative;overflow:hidden}
+.section::before{content:"";position:absolute;top:0;inset-inline:0;height:6px;background:linear-gradient(90deg,var(--rose),#e9a7b8,var(--leaf),var(--gold));opacity:.7}
+.section h2{margin:.2rem 0;color:var(--leaf-deep);font-size:1.65rem}.section h2 em{color:var(--rose-deep);font-style:normal}
+.sub{color:var(--muted);margin:0 0 1rem;max-width:95ch}
+.goals{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem}
+.goal{background:#fff;border:1px solid #eee0d6;border-radius:18px;padding:1rem}
+.goal b{color:var(--rose-deep)}.goal p{font-size:.88rem;margin:.3rem 0 0;color:#4c443f}
+.defs{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1rem}
+.def{background:linear-gradient(180deg,#fff,#fdf3f5);border:1px solid #f0d9e1;border-radius:18px;padding:1rem}
+.def h3{margin:0 0 .3rem;color:var(--leaf-deep)}.def p{font-size:.88rem;margin:0}
+.rose-info{display:grid;grid-template-columns:220px 1fr;gap:1rem;align-items:center;background:#fff7f9;border:1px solid #f0c7d3;border-radius:18px;padding:1rem;margin-top:1rem}
+.rose-info svg{width:100%;height:auto}
+.searchbar{display:flex;gap:.6rem;margin:.8rem 0}.search{flex:1;min-width:200px;padding:.8rem 1.2rem;border-radius:999px;border:1.5px solid #e7cbd3;font-size:1rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:.6rem 0}.chips button{border:1.5px solid #e7cbd3;background:#fff;border-radius:999px;padding:.42rem .95rem;cursor:pointer;font-weight:700;font-size:.85rem}.chips button.active{background:var(--leaf-deep);color:#fff;border-color:var(--leaf-deep)}
+.places{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.place{border-radius:20px;overflow:hidden;background:#fff;border:1px solid #f0dcd6;display:flex;flex-direction:column}
+.place-art{height:150px;background:#faf3ec;position:relative}.place-art svg{width:100%;height:100%;display:block}
+.place-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:transparent}
+.photo-rights{font-size:.68rem;color:#8a8178;padding:.3rem 1rem 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.modal-photo{width:100%;max-height:300px;object-fit:cover;border-radius:0;display:block;background:#f3e2e6}
+.place-body{padding:.95rem 1rem 1.1rem;display:grid;gap:.35rem;flex:1}
+.place-body h3{margin:0;color:var(--leaf-deep);font-size:1.05rem}.place-meta{font-size:.8rem;color:var(--muted)}.place-desc{font-size:.87rem;color:#4c443f;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hint{font-size:.8rem;color:var(--muted);background:#fff8ef;border:1px dashed #e6cf9e;border-radius:12px;padding:.6rem .9rem;margin-top:.8rem}
+.modal-back{position:fixed;inset:0;background:rgba(43,20,28,.55);z-index:100;display:none;align-items:flex-end;justify-content:center;padding:1rem}
+.modal-back.open{display:flex}.modal{background:var(--paper);border-radius:24px;max-width:860px;width:100%;max-height:92vh;overflow:auto;border:1px solid #f0d8df}
+.modal-head{position:relative;height:210px;background:#f9e9ee}.modal-head svg{width:100%;height:100%}
+.modal-body{padding:1.2rem 1.4rem 1.6rem}
+.kv{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin:.8rem 0}.kv div{background:#fff;border:1px solid #eee0d6;border-radius:14px;padding:.6rem .9rem;font-size:.87rem}.kv b{color:var(--leaf-deep)}
+.map-embed iframe{width:100%;height:280px;border:0;border-radius:16px}
+.map-btns{display:flex;gap:.6rem;flex-wrap:wrap;margin:.8rem 0}
+/* تنسيق النصوص وإخفاء أماكن النصوص المحذوفة */
+body{font-size:17px;line-height:2;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2{letter-spacing:0;text-wrap:balance}
+.section h2{font-size:1.75rem}
+.lead{font-size:1.08rem}
+.sub{font-size:.98rem}
+.card p,.def p,.goal p,.place-desc{font-size:.9rem;line-height:2}
+.hint,.notice{font-size:.86rem;line-height:1.95}
+table{font-size:.92rem}
+th{letter-spacing:0}
+.place-desc{-webkit-line-clamp:3}
+.tag:empty,.hint:empty,.lead:empty,.purpose:empty,.rose-cap:empty,.sub:empty,.place-desc:empty,.place-meta:empty,.kv b:empty{display:none}
+#goalsGrid:empty,#placeFilters:empty,#hikeFilters:empty{display:none}
+.grid{display:grid;gap:1rem}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.card{border:1px solid #eee0d6;border-radius:18px;padding:1rem;background:#fffdf8}.card h3{margin:.2rem 0 .4rem;color:var(--leaf-deep)}
+.tag{display:inline-block;font-size:.74rem;background:#e8f0e8;color:var(--leaf-deep);border-radius:999px;padding:.15rem .65rem;margin:.12rem}.tag.rose{background:var(--rose-mist);color:var(--rose-deep)}
+table{width:100%;border-collapse:collapse;font-size:.88rem;background:#fff;border-radius:14px;overflow:hidden}
+th,td{padding:.6rem;border-bottom:1px solid #eee;text-align:start}th{background:var(--leaf-deep);color:#fff}
+.notice{background:#fff8e1;border:1px solid #f0df9e;border-radius:14px;padding:.8rem 1rem;font-size:.88rem}
+.store{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:center;background:var(--leaf-deep);color:#fff;border-radius:20px;padding:1.3rem}
+.store .badge-row{display:flex;gap:.6rem;flex-wrap:wrap}
+.store-badge{border:1.5px solid #fff;border-radius:12px;padding:.55rem 1rem;font-weight:800;text-decoration:none;color:#fff;font-size:.86rem}
+.footer{background:var(--leaf-deep);color:#dfeee6;margin-top:2rem;border-radius:28px 28px 0 0}.footer-inner{max-width:1220px;margin:auto;padding:2rem 1rem;font-size:.86rem}
+@media(max-width:960px){.hero{grid-template-columns:1fr}.places,.g3,.g2,.goals,.defs,.store{grid-template-columns:1fr}.rose-info{grid-template-columns:1fr}.mini-stats{grid-template-columns:repeat(2,1fr)}.links{display:none;position:absolute;top:64px;inset-inline:1rem;background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:.7rem;flex-direction:column;align-items:stretch;z-index:70}.links.open{display:flex}.burger{display:block;margin-inline-start:auto}.kv{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar" data-i18n="topbar">مرشد الطائف · الإصدار 1.0 — يعمل بالعربية والإنجليزية، ويحفظ آخر لغة اخترتها</div>
+<header><nav class="nav">
+<div class="brand"><div class="brand-mark" id="logoRose"></div><div><span data-i18n="brand">مرشد الطائف · TAIF GUIDE</span><small data-i18n="brand_sub">الورد الطائفي الحقيقي شعاراً ومنهجاً: توثيق بلا مبالغة</small></div></div>
+<button class="burger" id="burger">☰</button>
+<div class="links" id="links">
+<a href="#places" data-i18n="n1">الأماكن</a>
+<a href="#tribes" data-i18n="n2">القبائل</a>
+<a href="#nature" data-i18n="n3">الطبيعة والزراعة</a>
+<a href="#hiking" data-i18n="n4">الهايكنج</a>
+<a href="#seasons" data-i18n="n5">المواسم</a>
+<a href="#distill" data-i18n="n7">التقطير</a>
+<a href="#food" data-i18n="n8">الأكلات والسمن</a>
+<button class="lang-toggle" id="langBtn">EN</button>
+</div></nav></header>
+
+<div class="hero">
+<div class="hero-art"><span id="heroRose"></span>
+<img class="hero-photo" loading="eager" alt="الورد الطائفي لحظة القطف" src="images/rose.jpg" data-fb="https://commons.wikimedia.org/wiki/Special:FilePath/Damask_rosa.jpg?width=800" onerror="var f=this.dataset.fb;if(f){this.dataset.fb='';this.src=f;}else{this.remove();}">
+<div class="rose-cap" data-i18n="rose_cap">وردة طائفية حقيقية (Rosa damascena trigintipetala): وردية اللون، نحو 30 بتلة متراكبة في شكل كأسي، تُقطف فجراً في أبريل ومايو. الرسم هنا يحاكي شكلها النباتي بدقة.</div>
+</div>
+<div class="hero-copy">
+<span class="eyebrow">✿ <span data-i18n="eyebrow">تطبيق سياحي جاهز للمتاجر · إصدار 1.0</span></span>
+<h1 data-i18n="h1">اكتشف الطائف كما هي: تاريخٌ موثّق وطبيعةٌ حيّة</h1>
+<p class="lead" data-i18n="lead">مرشد الطائف تطبيق عملي بالعربية والإنجليزية. لا يبيعك الوهم: يعرّفك بكل مكان سياحي أو أثري أو زراعي، ويخبرك ماذا سترى فعلاً، ومتى تأتي، وكيف تصل عبر خرائط جوجل، وأين تشاهد أحدث صور الزوار.</p>
+<div class="purpose" data-i18n="purpose">لماذا وُجد هذا التطبيق؟ لأن الزائر يحتاج جواباً واحداً صادقاً: ما الذي يستحق وقتي في الطائف؟ فجمعنا له التاريخ والجبل والمزرعة في مكان واحد، بلغة واضحة ومعلومة قابلة للتحقق.</div>
+<div class="cta-row">
+<a href="#places" class="btn btn-rose">✿ <span data-i18n="cta1">استكشف الأماكن</span></a>
+</div>
+<div class="mini-stats" id="kpi"></div>
+</div>
+</div>
+
+<div class="wrap">
+
+<div class="section" id="goals">
+<h2>◉ <em data-i18n="h_goals">ماذا يفعل هذا التطبيق؟ وما الذي لا يفعله؟</em></h2>
+<p class="sub" data-i18n="s_goals">نلتزم بالوضوح الكامل: هذه أهدافنا المعلنة، وما عدا ذلك لسنا مسؤولين عنه.</p>
+<div class="goals" id="goalsGrid"></div>
+<div class="defs">
+<div class="def"><h3 data-i18n="d1t">ماذا نقصد بمكان سياحي؟</h3><p data-i18n="d1d">موقع مهيأ لاستقبال الزوار (منتزه، تلفريك، مزرعة ورد مفتوحة، سوق). نذكر لك فيه: هل هو مجاني أم برسوم، وهل يناسب العائلات، وأفضل وقت لزيارته.</p></div>
+<div class="def"><h3 data-i18n="d2t">ماذا نقصد بمكان أثري؟</h3><p data-i18n="d2d">موقع له قيمة تاريخية موثقة (قصر، مسجد قديم، نقش صخري، سد). نفرّق بصدق بين الأصل القائم والترميم الحديث والموقع المُعاد إحياؤه، فلا نسمي الجديد قديماً.</p></div>
+<div class="def"><h3 data-i18n="d3t">ماذا نقصد بمكان زراعي؟</h3><p data-i18n="d3d">مزرعة عاملة تنتج الورد أو الفاكهة أو العسل. نذكر موسمها الحقيقي التقريبي، وأن المواعيد تتغير مع الطقس، وأن الشراء الأصيل يكون من المزرعة أو النحّال الموثوق.</p></div>
+</div>
+<div class="rose-info">
+<span id="roseBotanical"></span>
+<div><h3 style="margin:0;color:var(--rose-deep)" data-i18n="rose_t">الورد الطائفي بالأوصاف النباتية الصحيحة</h3>
+<p style="font-size:.9rem;margin:.4rem 0" data-i18n="rose_d">سلالة من الورد الدمشقي (Trigintipetala أي ثلاثينية البتلات). اللون وردي فاتح إلى متوسط، والزهرة كأسية عميقة عطرة جداً، والأوراق مركبة مسننة ذات 5 وريقات، والساق شائكة. يُزرع مروياً في الهدا والشفا على 1700–2300م، ويُقطف قبل شروق الشمس ليحفظ عطره، ثم يُقطَّر في نفس اليوم. كل واجهات هذا التطبيق تستخدم هذا الشكل الكأسي الوردي، لا الوردة الحمراء الأوروبية.</p></div>
+</div>
+</div>
+
+<div class="section" id="places">
+<h2>✿ <em data-i18n="h_places">الأماكن: قصة صادقة + صور حديثة + موقع دقيق</em></h2>
+<p class="sub" data-i18n="s_places">اختر المكان الذي يناسبك. زر «التفاصيل» يشرح لك تاريخ المكان وحالته اليوم وساعات زيارته. زر «صور جوجل» يعرض لك أحدث صور الزوار الحقيقية. زر «الموقع» يفتح الاتجاهات على خرائط جوجل.</p>
+<div class="searchbar"><input class="search" id="searchPlaces" placeholder="ابحث..."></div>
+<div class="chips" id="placeFilters"></div>
+<div class="places" id="placesGrid"></div>
+<div class="hint" data-i18n="photo_honesty">تنبيه الصور: الرسوم داخل التطبيق مرسومة بأسلوب مائي مستوحى من الوردة الطائفية الحقيقية، وهي للزينة فقط. الصور التوثيقية الحديثة تجدها عبر زر «صور جوجل» لكل مكان.</div>
+</div>
+
+<div class="section" id="tribes">
+<h2>◈ <em data-i18n="h_tribes">من سكن الطائف؟ القبائل والشخصيات</em></h2>
+<p class="sub" data-i18n="s_tribes">نذكر القبائل الرئيسية الثابتة (ثقيف، بنو سعد، بنو مالك، بلحارث، هذيل، عتيبة) والشخصيات الموثقة، دون ادعاء حصر أو مفاضلة بين الناس.</p>
+<div class="grid g2"><div class="card"><h3 data-i18n="t1">القبائل: الحاضرة والتاريخية</h3><div id="tribesList"></div></div>
+<div class="card"><h3 data-i18n="t2">شخصيات لا تُفهم الطائف بدونها</h3><div id="figuresList"></div></div></div>
+</div>
+
+<div class="section" id="nature">
+<h2>❧ <em data-i18n="h_nature">أين تنبت الطائف؟ الغطاء النباتي والمزارع</em></h2>
+<p class="sub" data-i18n="s_nature">الطائف ليست غابة استوائية. غطاؤها جبلي شبه جاف: عرعر في القمم، وطلح وسدر في الأودية. الزراعة المروية حزام حول المدينة وفي الهدا والشفا.</p>
+<div class="grid g2"><div class="card"><h3 data-i18n="veg_t">الغطاء الطبيعي وأماكنه</h3><div id="vegList"></div></div>
+<div class="card"><h3 data-i18n="agri_t">المناطق الزراعية وحدودها التقريبية</h3><div id="agriList"></div></div></div>
+<div class="map-embed" style="margin-top:1rem"><iframe title="Taif map" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=40.2%2C20.9%2C40.7%2C21.6&layer=mapnik&marker=21.2703%2C40.4158"></iframe></div>
+</div>
+
+<div class="section" id="hiking">
+<h2>⛰ <em data-i18n="h_hiking">امشِ في الجبل بأمان: مسارات الهايكنج</em></h2>
+<p class="sub" data-i18n="s_hiking">قيّمنا كل مسار بصدق: السهل للعائلة، والمتوسط يحتاج لياقة، والصعب للقمم والعقاب. لا تدخل وادياً وقت المطر، ولا تقترب من الحواف عند الضباب.</p>
+<div class="chips" id="hikeFilters"></div>
+<div class="grid g3" id="hikeGrid"></div>
+</div>
+
+<div class="section" id="seasons">
+<h2>❀ <em data-i18n="h_seasons">متى تأتي؟ مواسم الورد والفاكهة والعسل</em></h2>
+<p class="sub" data-i18n="s_seasons">كل المواعيد تقريبية وتتقدم أو تتأخر أسبوعين حسب برودة الشتاء وأمطار الربيع. القاعدة: الورد في أبريل ومايو، الفاكهة الصيفية في يونيو–سبتمبر، الرمان في الخريف، عسل السدر في الشتاء.</p>
+<div style="overflow:auto"><table id="seasonTable"><thead><tr><th data-i18n="c1">المنتج</th><th data-i18n="c2">الموسم التقريبي</th><th data-i18n="c3">أين تجده</th><th data-i18n="c4">كيف تشتري الأصلي</th></tr></thead><tbody></tbody></table></div>
+</div>
+
+<div class="section" id="distill">
+<h2>⚗ <em data-i18n="h_distill">تقطير الورد: كيف يتحول الفجر إلى عطر؟</em></h2>
+<p class="sub" data-i18n="s_distill">الخلاصة العملية: يُقطف الورد قبل الشروق، ويُطبخ بالبخار في مراجل نحاسية (الكركة) في نفس اليوم، فيخرج ماء الورد أولاً ثم دهن الورد المركز. ما دون ذلك تفاصيل تختلف من معمل لآخر.</p>
+<div class="petal-div"><svg class="petal-ico" viewBox="0 0 26 26"><path d="M13 2 C18 7 22 10 22 15 A9 9 0 0 1 4 15 C4 10 8 7 13 2Z" fill="#f7c9d6" stroke="#8e2a4a" stroke-width="1.4"/><circle cx="13" cy="16" r="3" fill="#d9a416"/></svg><span data-i18n="distill_steps_t">خطوات التقطير كما تجري فعلاً في المعامل</span></div>
+<div class="grid g3" id="distillSteps"></div>
+<div class="petal-div"><svg class="petal-ico" viewBox="0 0 26 26"><path d="M13 2 C18 7 22 10 22 15 A9 9 0 0 1 4 15 C4 10 8 7 13 2Z" fill="#e79fb6" stroke="#8e2a4a" stroke-width="1.4"/><circle cx="13" cy="16" r="3" fill="#d9a416"/></svg><span data-i18n="distill_where_t">أين تجد المعامل؟ (مناطق مؤكدة — تحقق من الاسم قبل الذهاب)</span></div>
+<div class="distill-grid" id="distillGrid"></div>
+<div class="hint" data-i18n="distill_note">ضبط الجودة: دهن الورد الأصلي غالٍ جداً لأنه يحتاج آلاف الزهرات لتولة واحدة، ويُباع غالباً بتغليف مختوم مع اسم المعمل. السعر الرخيص مؤشر يستدعي الشك. لا نذكر أرقام هواتف أو أسعاراً لأنها تتغير؛ استخدم زر الموقع لكل معمل للوصول والاتصال عبر خرائط جوجل.</div>
+</div>
+
+<div class="section" id="food">
+<h2>🍲 <em data-i18n="h_food">ماذا يأكل أهل الطائف؟ والسمن من أين؟</em></h2>
+<p class="sub" data-i18n="s_food">أطباق حجازية وجبلية تُطهى في البيوت والمطاعم الشعبية، لا في الفنادق الفاخرة. نذكر المشهور فعلاً في السوق، وأين تبحث عنه دون تزكية مطعم بعينه.</p>
+<div class="grid g3" id="foodGrid"></div>
+<div class="card" style="margin-top:.9rem"><h3 data-i18n="samn_t">السمن البري (سمن الغنم والبقر الجبلي)</h3><p style="font-size:.88rem" data-i18n="samn_d">يُجلب من مراعي الهدا والشفا وبني سعد، ويُباع في محلات العسل والسمن في سوق البلد وسط الطائف وفي أسواق الحوية. الأصلي ثقيل الرائحة، حبيبي القوام، وسعره أعلى بوضوح من السمن المصنع. اطلب التذوق قبل الشراء، واسأل عن مصدر الحليب (غنم أم بقر) وتاريخ الإنتاج — الغش فيه منتشر كالعسل.</p>
+<div class="map-btns"><a class="btn btn-leaf" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D8%B3%D9%88%D9%82+%D8%A7%D9%84%D8%A8%D9%84%D8%AF+%D8%A7%D9%84%D8%B7%D8%A7%D8%A6%D9%81+%D8%B3%D9%85%D9%86+%D8%B9%D8%B3%D9%84">📍 <span data-i18n="samn_btn">سوق البلد: محلات السمن والعسل</span></a></div></div>
+</div>
+
+<div class="section" id="install">
+<h2>✈ <em data-i18n="h_visit">خطط زيارتك وثبّت التطبيق</em></h2>
+<div class="grid g3" id="visitGrid" style="margin-bottom:1rem"></div>
+<div class="store">
+<div><h3 style="margin:0" data-i18n="store_t">التطبيق جاهز للتثبيت (PWA) وللنشر في المتاجر</h3>
+<p style="font-size:.88rem;opacity:.92" data-i18n="store_d">يعمل دون اتصال بعد أول تحميل، ويحفظ لغتك، وقابل للتثبيت على أندرويد وآيفون. للنشر في App Store وGoogle Play يُغلَّف نفس الكود عبر PWABuilder أو Capacitor دون تغيير.</p>
+<div class="badge-row"><button class="store-badge" id="installBtn2" style="background:#fff;color:var(--leaf-deep)">＋ <span data-i18n="cta3">ثبّت التطبيق</span></button></div></div>
+<div class="card" style="color:var(--ink)"><h3 data-i18n="support_t">الدعم والتحقق</h3><p style="font-size:.85rem" data-i18n="support_d">للتحقق الميداني: أمانة الطائف، وزارة الثقافة (متحف قصر شبرا)، المركز الوطني لتنمية الغطاء النباتي. الخرائط: OpenStreetMap وجوجل ماب. المواسم تتغير سنوياً — اتصل بالمزرعة قبل الحجز.</p></div>
+</div>
+</div>
+
+</div>
+
+<div class="modal-back" id="modalBack"><div class="modal"><div class="modal-head" id="modalArt"></div><div class="modal-body" id="modalBody"></div></div></div>
+<footer class="footer"><div class="footer-inner">
+<div style="font-weight:900" data-i18n="f1">مرشد الطائف — معلومة نافعة فقط، بلا إعلانات وبلا مبالغة</div>
+<div data-i18n="f2">صُمم بشعار الوردة الطائفية الحقيقية (وردية كأسية ثلاثينية البتلات). النصوص منقحة لتوضيح الهدف من كل قسم. الإصدار 1.0.0.</div>
+</div></footer>
+
+<script>
+
+document.getElementById('logoRose').innerHTML='<img src="images/rose.jpg" alt="الورد الطائفي" style="width:100%;height:100%;object-fit:cover;display:block">';
+document.getElementById('heroRose').innerHTML='';
+document.getElementById('roseBotanical').innerHTML='<img src="images/rose.jpg" alt="الورد الطائفي لحظة القطف" style="width:100%;height:auto;border-radius:14px;display:block">';
+
+const STR={
+ar:{topbar:"رايح الطائف",brand:"",brand_sub:"",
+n0:"أهداف التطبيق",n1:"الأماكن",n2:"القبائل",n3:"الطبيعة والزراعة",n4:"الهايكنج",n5:"المواسم",n6:"",n7:"التقطير",n8:"الأكلات والسمن",
+eyebrow:"",h1:"اكتشف الطائف المأنوس",
+lead:"",purpose:"",
+cta1:"استكشف الأماكن",cta2:"",cta3:"",
+rose_cap:"",
+h_goals:"",s_goals:"",
+d1t:"ماذا نقصد بمكان سياحي؟",d1d:"موقع جاهز لاستقبالك — منتزه أو تلفريك أو مزرعة ورد مفتوحة أو سوق — ونخبرك: مجاني أم برسوم، وعائلي أم لا، ومتى أجمل أوقاته.",
+d2t:"ماذا نقصد بمكان أثري؟",d2d:"موقع له قيمة تاريخية موثقة — قصر أو مسجد قديم أو نقش صخري أو سد — ونفرّق لك بصدق بين الأصل القائم والمرمم والمُعاد إحياؤه.",
+d3t:"ماذا نقصد بمكان زراعي؟",d3d:"مزرعة عاملة تنتج الورد أو الفاكهة أو العسل — بموسمها التقريبي الصادق، والشراء الأصيل من المزرعة أو النحّال الموثوق.",
+rose_t:"",rose_d:"",
+h_places:"",s_places:"جولة الطائف",
+photo_honesty:"",
+h_tribes:"من سكن الطائف ويسكنها؟",s_tribes:"نذكر القبائل الرئيسية الثابتة (ثقيف، بنو سعد، بنو مالك، بلحارث، هذيل، عتيبة) والشخصيات الموثقة، دون ادعاء حصر أو مفاضلة بين الناس.",t1:"قبائل الطائف: من الأمس إلى اليوم",t2:"ابرز الشخصيات",
+h_nature:"",s_nature:"لطائف يوجد بها غطاؤها جبلي شبه جاف: عرعر في القمم، وطلح وسدر في الأودية. الزراعة المروية حزام حول المدينة وفي الهدا والشفا",veg_t:"الغطاء النباتي الطبيعي",agri_t:"المناطق الزراعية",
+h_hiking:"المناطق الجبلية",s_hiking:"أماكن مناسبة لرياضة تسلق الجبال",
+h_seasons:"متى تأتي؟ مواسم الورد والفاكهة والعسل",s_seasons:"كل المواعيد تقريبية وتتقدم أو تتأخر أسبوعين حسب برودة الشتاء وأمطار الربيع. القاعدة: الورد في أبريل ومايو، الفاكهة الصيفية في يونيو–سبتمبر، الرمان في الخريف، عسل السدر في الشتاء.",c1:"المنتج",c2:"الموسم التقريبي",c3:"أين تجده",c4:"كيف تشتري الأصلي",
+h_distill:"تقطير الورد",s_distill:"يُقطف الورد قبل الشروق، ويُطبخ بالبخار في اوعية خاصة نحاسية وعن طريق التقطير يخرج ماء الورد أولاً ثم دهن الورد المركز. ما دون ذلك تفاصيل تختلف من معمل لآخر",distill_steps_t:"خطوات التقطير كما تجري فعلاً في المعامل",distill_where_t:"",distill_note:"",h_food:"ماذا يأكل أهل الطائف؟ والسمن من أين؟",s_food:"اطباق تشتهر بها الطائف",samn_t:"السمن البري (سمن الغنم الشفوي وسمن البقر)",samn_d:"جلب من مراعي الهدا والشفا وبني سعد، ويُباع في محلات العسل والسمن في سوق البلد وسط الطائف وفي أسواق الحوية",samn_btn:"سوق البلد: محلات السمن والعسل",
+h_visit:"",store_t:"",store_d:"",privacy:"",support_t:"",support_d:"",
+f1:"",f2:"",
+all:"",easy:"",medium:"",hard:"",detail:"",photos:"",location:"",hours:"",fee:"",best:"",close:"",directions:"",photosTitle:""},
+en:{topbar:"Going to Taif",brand:"",brand_sub:"",
+n0:"",n1:"Places",n2:"Tribes",n3:"Nature & Farms",n4:"Hiking",n5:"Seasons",n6:"",n7:"Distilling",n8:"Food & Ghee",
+eyebrow:"",h1:"Discover beloved Taif",
+lead:"",
+purpose:"",
+cta1:"Explore places",cta2:"",cta3:"",
+rose_cap:"",
+h_goals:"",s_goals:"",
+d1t:"What is a tourist place?",d1d:"A site ready to welcome you — park, cable car, open rose farm or souq. We tell you: free or paid, family-friendly or not, and when it's loveliest.",
+d2t:"What is an archaeological place?",d2d:"A site with documented historic value — palace, old mosque, rock inscription or dam. We honestly separate the standing original, the restored and the revived for you.",
+d3t:"What is a farm place?",d3d:"A working farm producing rose, fruit or honey — with its honest approximate season, and genuine buying from the farm or a trusted beekeeper.",
+rose_t:"",rose_d:"",
+h_places:"",s_places:"Taif tour",
+photo_honesty:"",
+h_tribes:"Who lived — and lives — in Taif?",s_tribes:"We list only established main tribes (Thaqif, Bani Sa'd, Bani Malik, Bal-Harith, Hudhail, Otaibah) and verified figures, with no exclusivity claims.",t1:"Taif's tribes: past to present",t2:"Top figures",
+h_nature:"",s_nature:"Taif has a semi-arid montane cover: juniper on the peaks, acacia and sidr in the wadis. Irrigated farming is a belt around the city and in Hada and Shafa.",veg_t:"Natural vegetation",agri_t:"Agricultural areas",
+h_hiking:"Mountain areas",s_hiking:"Places suitable for mountain climbing",
+h_seasons:"When to come? Rose, fruit & honey seasons",s_seasons:"All dates approximate ±2 weeks. Rule: roses April–May, summer fruits Jun–Sep, pomegranate autumn, sidr honey winter.",c1:"Product",c2:"Approx. season",c3:"Where",c4:"How to buy original",
+h_distill:"Rose distilling",s_distill:"Roses are picked before sunrise and steam-cooked in special copper vessels; through distilling, rose water comes out first, then the concentrated rose oil. Beyond that, details vary from factory to factory.",distill_steps_t:"Distilling steps as actually done",distill_where_t:"",distill_note:"",h_food:"What does Taif eat? And where is the ghee from?",s_food:"Dishes Taif is famous for",samn_t:"Wild ghee (sheep ghee and cow ghee)",samn_d:"Brought from Hada, Shafa and Bani Sa'd pastures; sold in honey and ghee shops at Al-Balad souq in central Taif and in Hawiyah markets.",samn_btn:"Al-Balad souq: ghee & honey shops",
+h_visit:"",store_t:"",store_d:"",privacy:"",support_t:"",support_d:"",
+f1:"",f2:"",
+all:"",easy:"",medium:"",hard:"",detail:"",photos:"",location:"",hours:"",fee:"",best:"",close:"",directions:"",photosTitle:""}
+};
+let LANG=localStorage.getItem('taif-lang')||'ar', placeFilter='all', hikeFilter='all';
+const GOALS=[];
+const PLACES=[
+{icon:"🏛️",hue:340,cat:{ar:"قصر ومتحف",en:"Palace & museum"},name:{ar:"قصر شبرا — المتحف الإقليمي",en:"Shubra Palace — Regional Museum"},loc:{ar:"حي شبرا، وسط الطائف — مكان سياحي وأثري",en:"Shubra, central Taif — tourist & historic"},q:"Shubra Palace Taif",embed:"Shubra+Palace+Taif",slug:"shubra",img:"images/shubra.jpg",fb:"https://commons.wikimedia.org/wiki/Special:FilePath/Shubra_Palace,_1905,_al-Taif,_Saudi_Arabia_(2).jpg?width=800",credit:{ar:"قصر شبرا — تصوير Richard Mortel (CC BY 2.0) عبر Wikimedia",en:"Shubra Palace — photo: Richard Mortel (CC BY 2.0) via Wikimedia"},
+desc:{ar:"تجوّل في قصر حجري عاش فيه الملك عبدالعزيز والملك فيصل، وتأمل الرواشين الخشبية المنحوتة وقاعات تروي تاريخ الطائف والحجاز. لماذا تزوره؟ لأنه أجمل مدخل لفهم الطائف في ساعة أو ساعتين. نصيحة: تعال صباحاً واجمعها مع سوق شبرا المجاور.",en:"Walk through a stone palace once home to Kings Abdulaziz and Faisal, admiring carved wooden mashrabiyas and halls that tell Taif and Hijaz history. Why visit? The finest introduction to Taif in one or two hours. Tip: come in the morning and combine it with the nearby Shubra souq."},
+hours:{ar:"يومياً 9ص–5م غالباً؛ تحقق قبل الذهاب فقد يغلق للصيانة",en:"Usually daily 9am–5pm; verify, may close for maintenance"},fee:{ar:"رسوم متحف رمزية غالباً",en:"Usually small museum fee"},best:{ar:"صباحاً مع سوق شبرا المجاور",en:"Morning with nearby Shubra souq"}},
+{icon:"🏠",hue:30,cat:{ar:"قصر ومتحف",en:"Palace & museum"},name:{ar:"بيت الكاتب — عمارة حجازية",en:"Al-Kateb House — Hijazi architecture"},loc:{ar:"حي السلامة — مكان أثري ومعماري",en:"Al-Salamah — architectural heritage"},q:"Beit Al Kateb Taif",embed:"Beit+Al+Kateb+Taif",slug:"kateb",img:"images/kateb.jpg",fb:"https://commons.wikimedia.org/wiki/Special:FilePath/%D8%A8%D9%8A%D8%AA_%D8%A7%D9%84%D9%83%D8%A7%D8%AA%D8%A8_%D9%81%D9%8A_%D8%A7%D9%84%D8%B7%D8%A7%D8%A6%D9%81_1.jpg?width=800",credit:{ar:"بيت الكاتب — تصوير Muhammad Sobri (CC BY-SA 4.0) عبر Wikimedia",en:"Al-Kateb House — photo: Muhammad Sobri (CC BY-SA 4.0) via Wikimedia"},
+desc:{ar:"قف أمام واجهات حجرية عمرها أكثر من قرن، ودقق في الزخارف والرواشين التي صنعت شهرة بيوت الطائف. لماذا تزوره؟ لترى بعينك كيف كان بيت الطائف الحجري. نصيحة: العصر أنسب وقت لتصوير الواجهات، واسأل عن المعارض الموسمية.",en:"Stand before century-old stone facades and study the ornaments and mashrabiyas behind Taif houses' fame. Why visit? To see with your own eyes what a Hijazi Taif house looked like. Tip: afternoons suit facade photography; ask about seasonal exhibits."},
+hours:{ar:"خارجي دائم؛ المعارض حسب الإعلان",en:"Exterior always; exhibits as announced"},fee:{ar:"مجاني من الخارج",en:"Free from outside"},best:{ar:"العصر لتصوير الواجهات",en:"Afternoon for facades"}},
+{icon:"🏟️",hue:45,cat:{ar:"موقع أثري وثقافي",en:"Archaeological & cultural"},name:{ar:"سوق عكاظ — الموقع الثقافي",en:"Souq Okaz — Cultural site"},loc:{ar:"شمال شرق الطائف (~45 كم)، طريق الرياض — مكان أثري",en:"NE Taif (~45 km), Riyadh road — historic"},q:"Souq Okaz Taif",embed:"Souq+Okaz+Taif",
+desc:{ar:"امشِ في الساحة التي تُبعث فيها أمجاد سوق هوازن وقريش: شعر يُلقى، وحرف تُصنع أمامك، وأسواق تعج بالحركة أيام المهرجان. لماذا تزوره؟ لتعيش أجواء السوق الجاهلي حيّة لا في الكتب. نصيحة: لا تأتِ خارج المهرجان — الموقع هادئ حينها.",en:"Walk the grounds where the glory of the Hawazin–Quraysh fair comes alive: poetry recited, crafts made before you, bustling markets on festival days. Why visit? To live the pre-Islamic fair, not just read about it. Tip: skip off-festival days — the site is quiet then."},
+hours:{ar:"يُفتح بقوة أيام المهرجان (الصيف غالباً)",en:"Best during festival (usually summer)"},fee:{ar:"حسب الفعالية",en:"Per event"},best:{ar:"أمسيات المهرجان",en:"Festival evenings"}},
+{icon:"🪨",hue:100,cat:{ar:"موقع أثري وثقافي",en:"Archaeological & cultural"},name:{ar:"النقوش الصخرية — العرفاء",en:"Rock inscriptions — Al-Arfaa"},loc:{ar:"شمال وشرق الطائف — مكان أثري",en:"N & E Taif — archaeological"},q:"Al Arfa Taif rock inscriptions",embed:"Al+Arfa+Taif",
+desc:{ar:"تأمل صخوراً حفر عليها ثموديون وكتبة أوائل بالخط الكوفي منذ آلاف السنين — رسائلهم ما زالت مقروءة. لماذا تزورها؟ لأنها أقدم «كتاب» مفتوح في الطائف. نصيحة: خذ مرشداً محلياً في صباح شتوي أو ربيعي، فالمواقع متفرقة في الشعاب.",en:"Gaze at rocks carved by Thamudic hands and early Kufic scribes thousands of years ago — their messages still legible. Why visit? The oldest open book in Taif. Tip: take a local guide on a winter or spring morning; sites scatter across ravines."},
+hours:{ar:"نهاراً فقط",en:"Daytime only"},fee:{ar:"مجاني",en:"Free"},best:{ar:"صباح شتوي أو ربيعي",en:"Winter–spring morning"}},
+{icon:"🕌",hue:150,cat:{ar:"موقع ديني وتاريخي",en:"Religious & historic"},name:{ar:"مسجد عبدالله بن عباس",en:"Ibn Abbas Mosque"},loc:{ar:"وسط الطائف — مكان ديني وتاريخي",en:"Central Taif — religious & historic"},q:"Abdullah ibn Abbas Mosque Taif",embed:"Abdullah+ibn+Abbas+Mosque+Taif",slug:"ibnabbas",img:"images/ibnabbas.jpg",fb:"https://commons.wikimedia.org/wiki/Special:FilePath/%D9%85%D8%B3%D8%AC%D8%AF_%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D9%84%D9%87_%D8%A8%D9%86_%D8%B9%D8%A8%D8%A7%D8%B3.jpg?width=800",credit:{ar:"مسجد عبدالله بن عباس — تصوير Muhammad Sobri (CC BY-SA 4.0) عبر Wikimedia",en:"Abdullah ibn Abbas Mosque — photo: Muhammad Sobri (CC BY-SA 4.0) via Wikimedia"},
+desc:{ar:"صلِّ في مسجد يجاور مدفن عبدالله بن عباس (ت ~68هـ/687م)، العالم الذي اختار الطائف سكناً ومدفناً. لماذا تزوره؟ لجمع السكينة والذكرى في مكان واحد. نصيحة: بعد الفجر أهدأ الأوقات.",en:"Pray in a mosque beside the grave of Abdullah ibn Abbas (d. ~68H/687), the scholar who chose Taif as home and resting place. Why visit? Serenity and remembrance in one stop. Tip: calmest right after Fajr."},
+hours:{ar:"مواعيد الصلاة",en:"Prayer times"},fee:{ar:"مجاني",en:"Free"},best:{ar:"بعد الفجر للهدوء",en:"After Fajr for calm"}},
+{icon:"🕌",hue:160,cat:{ar:"موقع ديني وتاريخي",en:"Religious & historic"},name:{ar:"مسجد الكوع — المعضبة",en:"Al-Kou' Mosque"},loc:{ar:"جنوب غرب الوسط — مكان ديني",en:"SW center — religious"},q:"Al Kou Mosque Taif",embed:"Al+Kou+Mosque+Taif",slug:"kou",img:"images/kou.jpg",fb:"https://commons.wikimedia.org/wiki/Special:FilePath/The_Old_Mosque_of_the_Prophet%3F_(6126585340).jpg?width=800",credit:{ar:"محراب مسجد الكوع — تصوير KELANTAN JOTTINGS (CC BY 2.0) عبر Wikimedia",en:"Al-Kou Mosque prayer niche — photo: KELANTAN JOTTINGS (CC BY 2.0) via Wikimedia"},
+desc:{ar:"قف في الموضع الذي يُذكر أن النبي ﷺ صلى فيه حين قدم الطائف سنة 10 للبعثة — مسجد صغير وبناء حديث على أرض قديمة المعنى. لماذا تزوره؟ لتستحضر تلك الزيارة في صمت المكان. نصيحة: مناسب في أي وقت ضمن مواعيد الصلاة.",en:"Stand where the Prophet ﷺ is remembered to have prayed on his Taif visit in the 10th year of the mission — a small mosque, modern walls on deeply meaningful ground. Why visit? To recall that visit in the site's quiet. Tip: fine anytime at prayer times."},
+hours:{ar:"مواعيد الصلاة",en:"Prayer times"},fee:{ar:"مجاني",en:"Free"},best:{ar:"أي وقت",en:"Anytime"}},
+{icon:"🌹",hue:335,cat:{ar:"مزرعة وطبيعة",en:"Farm & nature"},name:{ar:"مزارع الورد — الهدا والشفا",en:"Rose farms — Hada & Shafa"},loc:{ar:"الهدا شمال غرب والشفا جنوب غرب — مكان زراعي وسياحي",en:"Hada NW & Shafa SW — farm & tourist"},q:"Taif rose farms Al Hada",embed:"Al+Hada+Taif+rose+farm",slug:"rose",img:"images/rose.jpg",fb:"https://commons.wikimedia.org/wiki/Special:FilePath/Rosa_damascena_003.JPG?width=800",
+desc:{ar:"استنشق الورد الدمشقي الثلاثيني فجراً لحظة قطفه، وشاهد المراجل النحاسية تفوح، وجرّب الدهن وماء الورد من مصدره. لماذا تزورها؟ لأنها التجربة التي سُمّيت بها الطائف «مدينة الورد». نصيحة: أبريل ومايو فقط، من الفجر حتى العاشرة، واحجز مسبقاً.",en:"Breathe thirty-petalled Damask roses at dawn as they are picked, watch copper stills steam, and try the oil and water at their source. Why visit? The experience behind Taif's name as the City of Roses. Tip: April–May only, dawn to 10am, book ahead."},
+hours:{ar:"الفجر–10 صباحاً أيام الموسم؛ احجز مسبقاً",en:"Dawn–10am in season; book ahead"},fee:{ar:"رسوم مزرعة بسيطة غالباً",en:"Usually small farm fee"},best:{ar:"فجر أبريل–مايو",en:"Dawn Apr–May"}},
+{icon:"🏔️",hue:200,cat:{ar:"مزرعة وطبيعة",en:"Farm & nature"},name:{ar:"جبل دكا — قمة الشفا",en:"Jabal Daka — Shafa peak"},loc:{ar:"الشفا (~2500م) — مكان طبيعي",en:"Shafa (~2,500m) — nature"},q:"Jabal Daka Shafa Taif",embed:"Jabal+Daka+Shafa+Taif",slug:"daka",img:"images/daka.jpg",fb:"https://commons.wikimedia.org/wiki/Special:FilePath/Jabal_Dakka,_Al_Shafa.jpg?width=800",credit:{ar:"قمة جبل دكا، الشفا — تصوير Saanina (CC BY-SA 4.0) عبر Wikimedia",en:"Jabal Daka summit, Shafa — photo: Saanina (CC BY-SA 4.0) via Wikimedia"},
+desc:{ar:"اصعد إلى أعلى قمة حول الطائف، وامشِ بين العرعر الجبلي، وراقب سهول تهامة غرباً حين يصفو الجو. لماذا تزوره؟ لأوسع إطلالة في المنطقة. نصيحة: اختر غروباً صافياً بلا ضباب، وابتعد عن الحواف.",en:"Climb Taif's highest nearby peak, walk among mountain juniper, and gaze over the Tihama plains when skies clear. Why visit? The region's widest view. Tip: pick a clear, fog-free sunset and keep off the edges."},
+hours:{ar:"مفتوح دائماً",en:"Always open"},fee:{ar:"مجاني",en:"Free"},best:{ar:"غروب صافٍ بلا ضباب",en:"Clear fog-free sunset"}},
+{icon:"🚡",hue:210,cat:{ar:"مزرعة وطبيعة",en:"Farm & nature"},name:{ar:"تلفريك الهدا — الكر",en:"Hada cable car — Kara"},loc:{ar:"الهدا — مكان سياحي عائلي",en:"Hada — family attraction"},q:"Al Hada cable car Taif",embed:"Al+Hada+cable+car+Taif",slug:"hada",img:"images/hada.jpg",fb:"https://commons.wikimedia.org/wiki/Special:FilePath/Al-Hada_mountain_road,_al-Taif_region,_Saudi_Arabia_(1).jpg?width=800",credit:{ar:"طريق جبال الهدا — تصوير Prof. Mortel (CC BY 2.0) عبر Wikimedia",en:"Al-Hada mountain road — photo: Prof. Mortel (CC BY 2.0) via Wikimedia"},
+desc:{ar:"حلّق من برودة الهدا إلى دفء الكر فوق عقبة حادة، وشاهد الجبل يتغير تحتك طبقة فوق طبقة — متعة تناسب العائلة. لماذا تجربه؟ لترى الهدا من زاوية لا تُرى إلا من الجو. نصيحة: صباح صافٍ، وتحقق مسبقاً فالرياح والصيانة توقفانه.",en:"Glide from cool Hada to warm Kara over a steep escarpment, watching the mountain change layer by layer beneath you — family-friendly fun. Why ride? Hada from an angle seen only from the air. Tip: clear mornings, and check ahead since wind and maintenance stop it."},
+hours:{ar:"غالباً نهاراً يومياً",en:"Usually daily daytime"},fee:{ar:"تذاكر (تحقق من السعر الحالي)",en:"Tickets (check current price)"},best:{ar:"صباح صافٍ",en:"Clear morning"}},
+{icon:"🌳",hue:120,cat:{ar:"مزرعة وطبيعة",en:"Farm & nature"},name:{ar:"سيسد — الغابة والسد الأثري",en:"Saysad — grove & old dam"},loc:{ar:"شرق الطائف — طبيعة وأثر",en:"East Taif — nature & heritage"},q:"Saysad National Park Taif",embed:"Saysad+National+Park+Taif",slug:"saysad",img:"images/saysad.jpg",fb:"https://commons.wikimedia.org/wiki/Special:FilePath/Saysad_Dam_dated_to_678,_near_al-Taif,_Saudi_Arabia_(1).jpg?width=800",credit:{ar:"سد سيسد الأثري — تصوير Richard Mortel (CC BY 2.0) عبر Wikimedia",en:"Saysad archaeological dam — photo: Richard Mortel (CC BY 2.0) via Wikimedia"},
+desc:{ar:"امشِ بين السدر والطلح حتى جدار حجري قديم حجز السيول منذ العهد الأموي — هندسة صمدت قروناً. لماذا تزوره؟ طبيعة وأثر في نزهة واحدة. نصيحة: الشتاء والربيع أجمل، والمسارات مناسبة للجري العائلي.",en:"Stroll through sidr and acacia to an ancient stone wall that has held back floods since Umayyad times — engineering that outlasted centuries. Why visit? Nature and heritage in one outing. Tip: winter and spring are loveliest; trails suit family jogging."},
+hours:{ar:"نهاراً",en:"Daytime"},fee:{ar:"رمزية أحياناً",en:"Sometimes small"},best:{ar:"الشتاء والربيع",en:"Winter–spring"}},
+{icon:"⛰️",hue:140,cat:{ar:"جبل وطبيعة",en:"Mountain & nature"},name:{ar:"جبل قرنيت",en:"Jabal Qarnit"},loc:{ar:"مرتفعات الطائف — تحقق من الاسم محلياً",en:"Taif highlands — confirm name locally"},q:"جبل قرنيت الطائف",embed:"جبل+قرنيت+الطائف",
+desc:{ar:"تحدَّ قمة صخرية مكسوة بالعرعر تطل على الأودية — مغامرة هادئة بعيداً عن الزحام. لماذا تزوره؟ لعزلة الجبل الحقيقية. نصيحة: لا تصعد دون مرشد محلي وسيارة مجهزة، وفي صباح صافٍ بلا ضباب ولا مطر (الأسماء تتشابه محلياً فتأكد من الموقع).",en:"Take on a rocky juniper-clad peak overlooking nearby wadis — a quiet adventure off the crowds. Why visit? Genuine mountain solitude. Tip: never ascend without a local guide and equipped car, on a clear fog-free morning (names overlap locally, so confirm the spot)."},
+hours:{ar:"نهاراً فقط وبمرشد محلي",en:"Daytime only with local guide"},fee:{ar:"مجاني (برّي غير مجهز)",en:"Free (unequipped wild area)"},best:{ar:"صباح صافٍ بلا ضباب ولا مطر",en:"Clear morning, no fog or rain"}}];
+const DISTILL_STEPS=[
+{t:{ar:"1) القطف فجراً",en:"1) Dawn picking"},d:{ar:"أيادٍ تقطف الزهرة المتفتحة قبل الشمس، ليمسك الزيت الطيار قبل أن يتبخر — ثم تُنقل فوراً للمعمل.",en:"Hands pick open blooms before sunrise to catch the volatile oil before it escapes — then rush them to the still."}},
+{t:{ar:"2) المرجل النحاسي (الكركة)",en:"2) Copper still"},d:{ar:"ورود وماء في مرجل نحاسي يغلي بالبخار، فيتصاعد البخار محملاً بالعطر الذي شممته في الحقل.",en:"Roses and water boil by steam in copper, and the vapour rises carrying the scent you smelled in the field."}},
+{t:{ar:"3) التكثيف والفصل",en:"3) Condensing"},d:{ar:"يبرد البخار في الأنبوب فيقطر ماء الورد، ويطفو الدهن الذهبي على السطح فيُجمع قطرة قطرة.",en:"Cooled vapour drips as rose water while golden oil floats up to be skimmed drop by drop."}},
+{t:{ar:"4) التعبئة",en:"4) Bottling"},d:{ar:"ماء الورد ليومك، وقارورة صغيرة مختومة باسم المعمل تحمل العطر المركز — خلاصة آلاف الزهرات.",en:"Rose water for your day, and a small factory-sealed vial of concentrated perfume — thousands of blooms in your palm."}},
+{t:{ar:"متى تشاهد ذلك؟",en:"When to watch?"},d:{ar:"أبريل ومايو صباحاً فقط — خارج الموسم ستجد المعامل هادئة بلا تقطير حي، فلا تؤجل زيارتك.",en:"April–May mornings only — off-season the stills sit quiet, so don't postpone your visit."}},
+{t:{ar:"كيف تتأكد من الأصلي؟",en:"How to verify?"},d:{ar:"ثق بأنفك: رائحة عميقة ثابتة، وتغليف مختوم باسم المعمل، وسعر مرتفع — واطلب رؤية التقطير بعينك لا في الصور.",en:"Trust your nose: deep lasting scent, factory-sealed pack, high price — and ask to see distilling with your own eyes, not in photos."}}];
+const DISTILL=[
+{n:{ar:"معامل الهدا (تجمع القرشي والكمال وغيرهما)",en:"Hada factories cluster"},q:"مصنع الورد الطائفي الهدا",w:{ar:"على طريق الهدا–الكر تتجاور المعامل والمزارع وتفتح أبوابها في الموسم — شمّ وقارن واختر.",en:"On the Hada–Kara road neighbouring stills open in season — smell, compare, choose."},note:{ar:"الأشهر اسماً؛ تحقق من المعمل الذي تقصده بالاسم على الخريطة.",en:"Best-known names; verify the exact factory by name on the map."}},
+{n:{ar:"معامل الشفا",en:"Shafa factories"},q:"مصنع الورد الطائفي الشفا",w:{ar:"معامل عائلية صغيرة بجانب المزارع على طريق الشفا — تجربة أهدأ وحميمية بعيداً عن زحام الهدا.",en:"Small family stills by Shafa road farms — a calmer, warmer experience away from Hada crowds."},note:{ar:"اتصل قبل الذهاب؛ بعضها يعمل بالحجز في ذروة القطف.",en:"Call ahead; some run by booking at picking peak."}},
+{n:{ar:"معامل وادي محرم والمثناة",en:"Wadi Mahram & Mathnah stills"},q:"معمل الورد الطائفي وادي محرم",w:{ar:"معامل قريبة من وسط الطائف شرقاً وجنوباً — خيار عملي لمن لا يصعد للهدا.",en:"Stills east and south, close to downtown — the practical pick if you skip Hada."},note:{ar:"خيار عملي خارج الزحام؛ اسأل هل التقطير حي يوم زيارتك.",en:"Practical low-crowd option; ask if distilling is live that day."}}];
+const FOODS=[
+{t:{ar:"السليق الطائفي",en:"Taif Saleeg"},d:{ar:"أرز غني مطهو بالحليب مع الدجاج أو اللحم، يتوج بملعقة سمن بري ذائب — الطبق الذي يبدأ به الزائر الطائف. جرّبه في المطاعم الشعبية وسط الطائف وشهار.",en:"Rich rice cooked in milk with chicken or meat, crowned with melted wild ghee — the dish visitors start Taif with. Try it in folk restaurants downtown and in Shehar."},w:{ar:"المطاعم الشعبية في وسط الطائف وشهار",en:"Folk restaurants downtown & Shehar"}},
+{t:{ar:"المندي والحنيذ",en:"Mandi & Haneeth"},d:{ar:"لحم يذوب بعد ساعات في حفرة أو فرن حجري، برائحة الحطب والبهار — قلب الولائم في الحجاز وجنوب الطائف.",en:"Meat falling apart after hours in pit or stone oven, scented with woodsmoke and spice — the heart of Hijazi and southern Taif feasts."},w:{ar:"مطاعم شعبية ومطابخ الولائم",en:"Folk restaurants & feast kitchens"}},
+{t:{ar:"الجريش والمرقوق",en:"Jareesh & Margoug"},d:{ar:"قمح مجروش أو رقائق عجين تتشرب مرق اللحم والخضار — دفء الشتاء في صحن مشبع.",en:"Crushed wheat or dough sheets soaked in meat-and-vegetable broth — winter warmth in a filling bowl."},w:{ar:"البيوت والمطاعم الشعبية",en:"Homes & folk restaurants"}},
+{t:{ar:"العريكة والمعصوب",en:"Areekah & Masoob"},d:{ar:"عجين التمر يعانق السمن والعسل، أو الموز المهروس بالخبز — حلاوة شعبية تذوب بثقل السمن البري. تجدها في المحلات الشعبية صباحاً ومساءً.",en:"Date dough embracing ghee and honey, or banana mashed with bread — folk sweetness melting with wild ghee. Found in folk shops morning and evening."},w:{ar:"محلات الشعبية صباحاً ومساءً",en:"Folk shops morning & evening"}},
+{t:{ar:"خبز الملة والتنور",en:"Malla & tannour bread"},d:{ar:"خبز يخرج من الرماد الحار أو جدار التنور الحجري ساخناً يتصاعد بخاره — كُله حاراً مع السمن والعسل.",en:"Bread pulled from hot ash or the stone tannour wall, steaming — eat it hot with ghee and honey."},w:{ar:"مخابز شعبية وقرى الشفا",en:"Folk bakeries & Shafa villages"}},
+{t:{ar:"العسل والسمن معاً",en:"Honey with ghee"},d:{ar:"فطور الجبل: عسل صيفي أو سدر مع ملعقة سمن بري على خبز حار — ابدأ صباحك بها في سوق البلد بعد التذوق.",en:"Mountain breakfast: summer or sidr honey with wild ghee on hot bread — start your day with it at Al-Balad souq after tasting."},w:{ar:"سوق البلد: محلات العسل والسمن",en:"Al-Balad souq: honey & ghee shops"}}];
+const TRIBES=[{n:{ar:"ثقيف",en:"Thaqif"},d:{ar:"أهل المدينة ووادي وج منذ الجاهلية — وما زالوا جيرانك في السوق والحي.",en:"The people of the city and Wadi Waj since pre-Islamic times — still your neighbours in souq and street."}},{n:{ar:"بنو سعد من هوازن",en:"Bani Sa'd of Hawazin"},d:{ar:"أهل بني سعد والشفا — منهم حليمة السعدية التي أرضعت النبي ﷺ.",en:"The people of Bani Sa'd and Shafa — among them Halima al-Sa'diyya, who nursed the Prophet ﷺ."}},{n:{ar:"بنو مالك وبلحارث",en:"Bani Malik & Bal-Harith"},d:{ar:"قبائل الجنوب الزراعية في ميسان وما حولها — جذور ضاربة في أرض الطائف.",en:"The farming tribes of the south, in Maysan and beyond — roots deep in Taif soil."}},{n:{ar:"هذيل",en:"Hudhail"},d:{ar:"أهل الشمال والغرب في الشفا ونحو الهدا ومكة — شعراء وفروسية في الذاكرة.",en:"The people of the north and west in Shafa and toward Hada and Makkah — poets and horsemen in memory."}},{n:{ar:"عتيبة",en:"Otaibah"},d:{ar:"أهل الحوية والسيل وشمال شرق الطائف — حضور البادية حول المدينة.",en:"The people of Hawiyah, As-Sail and the northeast — the steppe's presence around the city."}}];
+const FIGURES=[{n:{ar:"حليمة السعدية",en:"Halima al-Sa'diyya"},d:{ar:"من بادية بني سعد — المرأة التي أرضعت النبي ﷺ، ورمز الطائف الأمومي.",en:"From the Bani Sa'd steppe — the woman who nursed the Prophet ﷺ, Taif's maternal symbol."}},{n:{ar:"عبدالله بن عباس (ت 68هـ)",en:"Ibn Abbas (d. 687)"},d:{ar:"حبر الأمة وعالمها — سكن الطائف وتوفي ودُفن فيها، ومسجده وضريحه وسط المدينة.",en:"The nation's scholar — he lived, died and lies buried in Taif; his mosque and grave stand downtown."}},{n:{ar:"عروة بن مسعود الثقفي",en:"Urwa al-Thaqafi"},d:{ar:"سيد ثقيف الذي أسلم ودعا قومه فدفع حياته ثمناً لدعوته.",en:"Thaqif's chief who embraced Islam, called his people, and paid with his life."}},{n:{ar:"الحجاج بن يوسف (40–95هـ)",en:"Al-Hajjaj (661–714)"},d:{ar:"القائد والوالي الطائفي — إصلاحات إدارية وقسوة موثقة؛ شخصية لا يُجمع عليها.",en:"Taif's commander-governor — documented reforms and severity; a divisive figure."}}];
+const VEG=[{t:{ar:"العرعر",en:"Juniper"},w:{ar:"العرعر يعانق قمم الشفا ودكا فوق 2000م",en:"Juniper clings to the Shafa and Daka peaks above 2,000m"}},{t:{ar:"الطلح والسلم والسدر",en:"Acacia & sidr"},w:{ar:"الطلح والسدر يظللان الأودية والسفوح بين 1200–1900م: وج وسيسد",en:"Acacia and sidr shade the wadis and slopes between 1,200–1,900m: Waj and Saysad"}},{t:{ar:"الشيح والنباتات العطرية البرية",en:"Artemisia & wild aromatics"},w:{ar:"الشيح والأعشاب العطرية البرية تفوح في المرتفعات المفتوحة",en:"Artemisia and wild aromatic herbs scent the open highlands"}},{t:{ar:"الورد المزروع",en:"Cultivated rose"},w:{ar:"الورد المزروع يسقيه أهل الهدا والشفا في مزارع مروية",en:"Cultivated roses, watered by Hada and Shafa growers on irrigated farms"}}];
+const AGRI=[{t:{ar:"الهدا",en:"Hada"},w:{ar:"الهدا شمال غرب: عطر الورد وحلاوة الفواكه الحجرية والبرشومي",en:"Hada in the northwest: rose scent, stone-fruit sweetness and prickly pears"}},{t:{ar:"الشفا",en:"Shafa"},w:{ar:"الشفا جنوب غرب: الورد والعسل والرمان",en:"Shafa in the southwest: roses, honey and pomegranates"}},{t:{ar:"وج والمثناة والقيم",en:"Waj, Mathnah & Qaim"},w:{ar:"وج والمثناة والقيم: حزام الرمان والعنب والتين حول المدينة",en:"Waj, Mathnah and Qaim: a belt of pomegranate, grapes and figs around the city"}},{t:{ar:"بني سعد والسيل",en:"Bani Sa'd & As-Sail"},w:{ar:"بني سعد والسيل جنوب شرق وشمال شرق: حبوب الحقول وعسل السدر",en:"Bani Sa'd and As-Sail, southeast and northeast: field grains and sidr honey"}}];
+const HIKES=[{n:{ar:"جبل دكا",en:"Jabal Daka"},dif:"hard",d:{ar:"قمة عالية بإطلالة واسعة — مغامرة تستحق، بشرط الالتزام بالمسار والحذر من الضباب المفاجئ.",en:"A high summit with sweeping views — an adventure worth it, staying on track and wary of sudden fog."}},{n:{ar:"عقبة الكر (درب الجمالة)",en:"Kara Aqaba"},dif:"hard",d:{ar:"درب حجري تاريخي شديد الانحدار — خطوات الأجداد تحت قدميك، وقسوة حقيقية على الركب.",en:"A steep historic stone path — ancestors' footsteps beneath you, genuinely hard on knees."}},{n:{ar:"وادي المثناة",en:"Mathnah valley"},dif:"easy",d:{ar:"بساتين وظل وخرير ماء موسمي — نزهة العائلة المثالية.",en:"Orchards, shade and seasonal streams — the ideal family outing."}},{n:{ar:"سيسد",en:"Saysad"},dif:"easy",d:{ar:"حلقات مشي واضحة بين السدر والطلح — ابدأ منها إن كانت أول مرة.",en:"Clear loops among sidr and acacia — start here if it's your first time."}},{n:{ar:"الردف",en:"Rudaf"},dif:"easy",d:{ar:"ممشى حضري آمن حول البحيرة — لأمسية هادئة بلا تجهيز.",en:"A safe urban lakeside walk — for a calm evening, no gear needed."}},{n:{ar:"وادي عرضة",en:"Wadi Ardah"},dif:"medium",d:{ar:"وادٍ يعبر القرى والمدرجات الخضراء — خذ مرشداً في أول مرة لتقرأ المكان.",en:"A valley through villages and green terraces — take a guide first time to read the place."}},{n:{ar:"جبل قرنيت",en:"Jabal Qarnit"},dif:"medium",d:{ar:"قمة صخرية مكسوة بالعرعر بعيداً عن الزحام — لكن المرشد المحلي واجب (المعلومات الموثقة محدودة).",en:"A juniper-clad rocky peak off the crowds — but a local guide is a must (verified info is limited)."}}];
+const SEASONS=[{p:{ar:"الورد (قطف وتقطير)",en:"Rose (pick & distill)"},s:{ar:"أبريل–مايو (~40 يوماً)",en:"April–May (~40 days)"},w:{ar:"الهدا والشفا",en:"Hada & Shafa"},n:{ar:"عِش القطف فجراً والتقطير في يومه — أربعون يوماً في السنة فقط، فاحجز مزرعتك.",en:"Live dawn picking and same-day distilling — only forty days a year, so book your farm."}},{p:{ar:"مشمش وخوخ وبرقوق",en:"Apricot, peach, plum"},s:{ar:"يونيو–يوليو",en:"June–July"},w:{ar:"الهدا والشفا",en:"Hada & Shafa"},n:{ar:"حلاوة الصيف القصيرة — كُلها من المزرعة مباشرة قبل انتهاء الموسم.",en:"Summer's short sweetness — eat it at the farm before the season ends."}},{p:{ar:"تين وعنب",en:"Figs & grapes"},s:{ar:"يوليو–سبتمبر",en:"July–September"},w:{ar:"وج والمثناة",en:"Waj & Mathnah"},n:{ar:"إنتاج محدود — اسأل عن الصنف وذُق قبل أن تشتري.",en:"Limited produce — ask the variety and taste before buying."}},{p:{ar:"رمان طائفي",en:"Taif pomegranate"},s:{ar:"أغسطس–أكتوبر",en:"August–October"},w:{ar:"القيم والمثناة",en:"Qaim & Mathnah"},n:{ar:"حبات الخريف الحمراء — الجودة تتفاوت، فذُق قبل الشراء.",en:"Autumn's red gems — quality varies, so taste first."}},{p:{ar:"عسل صيفي وسدر",en:"Summer & sidr honey"},s:{ar:"الصيف / أكتوبر–ديسمبر",en:"Summer / Oct–Dec"},w:{ar:"الشفا وبني سعد",en:"Shafa & Bani Sa'd"},n:{ar:"عسل يستحق سعره — لكن الغش منتشر، فلا تشترِ إلا من نحّال موثوق.",en:"Honey worth its price — but fraud is rife, so buy only from a trusted keeper."}}];
+const VISIT=[{t:{ar:"أفضل وقت",en:"Best time"},d:{ar:"مارس–مايو لتعيش الورد والاعتدال، وسبتمبر–أكتوبر لموسم الرمان. الصيف جميل لكن مزدحم وأغلى.",en:"March–May to live the roses and mild weather, September–October for pomegranate season. Summer is lovely but crowded and pricier."}},{t:{ar:"الوصول",en:"Getting there"},d:{ar:"مطار الطائف (TIF) للرحلات الداخلية. من جدة ~3 ساعات عبر الهدا، ومن مكة ~1.5 ساعة.",en:"Taif airport (TIF) for domestic flights. Jeddah ~3h via Hada, Makkah ~1.5h."}},{t:{ar:"يوم مقترح",en:"Sample day"},d:{ar:"فجرك في مزرعة ورد في موسمها، وصباحك في قصر شبرا، وعصرك في الردف، وغروبك في الشفا.",en:"Your dawn at a rose farm in season, morning at Shubra Palace, afternoon at Rudaf, sunset at Shafa."}}];
+const KPI=[{v:{ar:"~1700م",en:"~1,700m"},l:{ar:"ارتفاع المدينة",en:"City elevation"}},{v:{ar:"11",en:"11"},l:{ar:"مكاناً موثقاً",en:"Verified places"}},{v:{ar:"أبريل–مايو",en:"Apr–May"},l:{ar:"موسم الورد",en:"Rose season"}},{v:{ar:"v1.0",en:"v1.0"},l:{ar:"جاهز للمتاجر",en:"Store-ready"}}];
+const t=o=>o[LANG]||o.ar;
+function render(){
+document.documentElement.lang=LANG;document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
+document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(STR[LANG][k]!==undefined)el.textContent=STR[LANG][k];});
+document.getElementById('langBtn').textContent=LANG==='ar'?'EN':'عربي';
+document.getElementById('searchPlaces').placeholder=LANG==='ar'?'ابحث باسم المكان: شبرا، عكاظ، الهدا...':'Search by place: Shubra, Okaz, Hada...';
+document.getElementById('kpi').innerHTML=KPI.map(k=>`<div><strong>${k.v[LANG]}</strong><span>${k.l[LANG]}</span></div>`).join('');
+document.getElementById('goalsGrid').innerHTML=GOALS.map(g=>`<div class="goal"><b>${t(g.t)}</b><p>${t(g.d)}</p></div>`).join('');
+renderPlaces();renderStatic();preferLocalPhotos();cleanEmpties();
+}
+function preferLocalPhotos(){document.querySelectorAll('img[data-local]').forEach(img=>{const test=new Image();test.onload=()=>{img.src=test.src;};test.src=img.dataset.local;});}
+function cleanEmpties(){
+const hide=el=>{if(el)el.style.display='none';};
+document.querySelectorAll('#links a').forEach(a=>{if(!a.textContent.trim())hide(a);});
+document.querySelectorAll('.chips button').forEach(b=>{if(!b.textContent.trim())hide(b);});
+document.querySelectorAll('.eyebrow').forEach(e=>{if(!e.textContent.replace('✿','').trim())hide(e);});
+const bs=document.querySelector('.brand span[data-i18n]');if(bs&&!bs.textContent.trim())hide(bs);
+const bsm=document.querySelector('.brand small');if(bsm&&!bsm.textContent.trim())hide(bsm);
+document.querySelectorAll('h2').forEach(h=>{const em=h.querySelector('em[data-i18n]');if(em&&!em.textContent.trim()&&!h.textContent.replace(/[✿◉◈❧⛰❀⚗🍲✈]/g,'').trim())hide(h);});
+document.querySelectorAll('.petal-div').forEach(d=>{const s=d.querySelector('span');if(s&&!s.textContent.trim())hide(d);});
+['goalsGrid','visitGrid'].forEach(id=>{const el=document.getElementById(id);if(el&&!el.children.length)hide(el);});
+document.querySelectorAll('.rose-info h3,.rose-info p,.store h3,.store p,.footer-inner div,.card .tag').forEach(el=>{if(!el.textContent.trim()&&!el.querySelector('a,button'))hide(el);});
+document.querySelectorAll('.store .card').forEach(c=>{const t=[...c.querySelectorAll('h3,p')];if(t.length&&t.every(e=>!e.textContent.trim()))hide(c);});
+}
+function renderStatic(){
+document.getElementById('tribesList').innerHTML=TRIBES.map(x=>`<div style="margin:.4rem 0"><b>${t(x.n)}</b><div style="font-size:.86rem;color:#5d5651">${t(x.d)}</div></div>`).join('');
+document.getElementById('figuresList').innerHTML=FIGURES.map(x=>`<div style="margin:.4rem 0"><b>${t(x.n)}</b><div style="font-size:.86rem;color:#5d5651">${t(x.d)}</div></div>`).join('');
+document.getElementById('vegList').innerHTML=VEG.map(x=>`<div style="margin:.4rem 0"><b>${t(x.t)}</b> — <span style="font-size:.86rem">${t(x.w)}</span></div>`).join('');
+document.getElementById('agriList').innerHTML=AGRI.map(x=>`<div style="margin:.4rem 0"><b>${t(x.t)}</b> — <span style="font-size:.86rem">${t(x.w)}</span></div>`).join('');
+const hl={all:STR[LANG].all,easy:STR[LANG].easy,medium:STR[LANG].medium,hard:STR[LANG].hard};
+document.getElementById('hikeFilters').innerHTML=['all','easy','medium','hard'].map(o=>`<button class="${hikeFilter===o?'active':''}" data-d="${o}">${hl[o]}</button>`).join('');
+document.querySelectorAll('#hikeFilters button').forEach(b=>b.onclick=()=>{hikeFilter=b.dataset.d;renderStatic();});
+document.getElementById('hikeGrid').innerHTML=HIKES.filter(h=>hikeFilter==='all'||h.dif===hikeFilter).map(h=>`<div class="card"><span class="tag ${h.dif==='hard'?'rose':''}">${hl[h.dif]}</span><h3>${t(h.n)}</h3><p style="font-size:.87rem">${t(h.d)}</p></div>`).join('');
+document.querySelector('#seasonTable tbody').innerHTML=SEASONS.map(s=>`<tr><td><b>${t(s.p)}</b></td><td>${t(s.s)}</td><td>${t(s.w)}</td><td>${t(s.n)}</td></tr>`).join('');
+document.getElementById('visitGrid').innerHTML=VISIT.map(v=>`<div class="card"><h3>${t(v.t)}</h3><p style="font-size:.87rem">${t(v.d)}</p></div>`).join('');
+document.getElementById('distillSteps').innerHTML=DISTILL_STEPS.map(s=>`<div class="card"><span class="still-badge">⚗ ${t(s.t)}</span><p style="font-size:.86rem;margin:.4rem 0 0">${t(s.d)}</p></div>`).join('');
+document.getElementById('distillGrid').innerHTML=DISTILL.map(d=>{return `<div class="card"><h3>${t(d.n)}</h3><p style="font-size:.86rem">${t(d.w)}</p><p style="font-size:.82rem;color:var(--muted)">${t(d.note)}</p></div>`;}).join('');
+document.getElementById('foodGrid').innerHTML=FOODS.map(f=>`<div class="card"><h3>${t(f.t)}</h3><p style="font-size:.86rem">${t(f.d)}</p><div style="font-size:.78rem;color:var(--muted)">📍 ${t(f.w)}</div></div>`).join('');
+}
+function miniArt(hue,icon){return `<svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMid slice"><rect width="400" height="150" fill="#fdf3ec"/><ellipse cx="90" cy="45" rx="120" ry="60" fill="hsl(${hue},55%,84%)" opacity=".55"/><ellipse cx="310" cy="110" rx="130" ry="60" fill="hsl(${(hue+40)%360},45%,87%)" opacity=".6"/><text x="200" y="98" text-anchor="middle" font-size="54">${icon}</text></svg>`;}
+function renderPlaces(){
+const cats=['all',...new Set(PLACES.map(p=>t(p.cat)))];
+document.getElementById('placeFilters').innerHTML=cats.map(c=>`<button class="${placeFilter===c?'active':''}" data-c="${c}">${c==='all'?STR[LANG].all:c}</button>`).join('');
+document.querySelectorAll('#placeFilters button').forEach(b=>b.onclick=()=>{placeFilter=b.dataset.c;renderPlaces();});
+const q=(document.getElementById('searchPlaces').value||'').trim();
+const list=PLACES.filter(p=>(placeFilter==='all'||t(p.cat)===placeFilter)&&(!q||t(p.name).includes(q)||t(p.desc).includes(q)));
+document.getElementById('placesGrid').innerHTML=list.map(p=>{
+return `<article class="place"><div class="place-art">${miniArt(p.hue,p.icon)}${p.img?`<img class="place-photo" loading="lazy" alt="${t(p.name)}" ${p.fb?`data-fb="${p.fb}"`:''} src="${p.img}" onerror="var f=this.dataset.fb;if(f){this.dataset.fb='';this.src=f;}else{this.remove();}">`:''}</div>${p.credit?`<div class="photo-rights">${t(p.credit)}</div>`:''}
+<div class="place-body"><h3>${t(p.name)}</h3><div class="place-meta">${t(p.loc)}</div><p class="place-desc">${t(p.desc)}</p></div></article>`;}).join('')||'';
+}
+function openModal(idx){
+const p=PLACES[idx];const maps=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.q)}`;
+const embed=`https://www.google.com/maps?q=${encodeURIComponent(p.embed)}&output=embed`;
+document.getElementById('modalArt').innerHTML=`<div style="position:relative;height:210px;overflow:hidden">${miniArt(p.hue,p.icon)}${p.img?`<img class="place-photo" alt="${t(p.name)}" ${p.fb?`data-fb="${p.fb}"`:''} src="${p.img}" onerror="var f=this.dataset.fb;if(f){this.dataset.fb='';this.src=f;}else{this.remove();}">`:''}</div>`+`${p.credit?`<div class="photo-rights">${t(p.credit)}</div>`:''}`;
+document.getElementById('modalBody').innerHTML=`<span class="tag rose">${t(p.cat)}</span><h2 style="margin:.3rem 0">${t(p.name)}</h2><div style="color:var(--muted);font-size:.86rem">${t(p.loc)}</div><p>${t(p.desc)}</p>
+<div class="kv">${[['🕘',STR[LANG].hours,t(p.hours)],['🎟️',STR[LANG].fee,t(p.fee)],['🌸',STR[LANG].best,t(p.best)]].filter(x=>x[1]&&x[1].trim()).map(x=>`<div><b>${x[0]} ${x[1]}:</b><br>${x[2]}</div>`).join('')}</div>
+<div class="map-embed"><iframe title="map" loading="lazy" src="${embed}"></iframe></div>
+<div class="map-btns"><a class="btn btn-leaf" target="_blank" rel="noopener" href="${maps}">📍 ${STR[LANG].directions}</a></div>`;
+document.getElementById('modalBack').classList.add('open');preferLocalPhotos();cleanEmpties();
+}
+function closeModal(){document.getElementById('modalBack').classList.remove('open');}
+document.getElementById('modalBack').addEventListener('click',e=>{if(e.target.id==='modalBack')closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+document.getElementById('langBtn').onclick=()=>{LANG=LANG==='ar'?'en':'ar';localStorage.setItem('taif-lang',LANG);placeFilter='all';hikeFilter='all';render();};
+document.getElementById('searchPlaces').oninput=renderPlaces;
+document.getElementById('burger').onclick=()=>document.getElementById('links').classList.toggle('open');
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
+async function doInstall(){if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;}}
+document.getElementById('installBtn2').onclick=doInstall;
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}
+render();
+</script>
+</body>
+</html>
