@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>حجز الرحلات السياحية | مرشد الطائف السياحي</title>
+<meta name="description" content="احجز رحلتك في الطائف: باقات الورد والتاريخ والجبل واليوم العائلي — اختر باقتك وحدد موعدك.">
+<meta name="theme-color" content="#8e2a4a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="مرشد الطائف">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+:root{--paper:#fdf6f0;--rose-deep:#8e2a4a;--rose:#c14a6e;--rose-mist:#fceef2;--leaf-deep:#1e4433;--leaf:#2f7350;--gold:#a97e14;--ink:#2b2522;--muted:#75685f;--card:#fffdfa;--shadow:0 18px 50px rgba(142,42,74,.13),0 4px 14px rgba(30,68,51,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:"Tajawal","Segoe UI",Tahoma,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:17px;-webkit-font-smoothing:antialiased;background-image:radial-gradient(900px 400px at 85% -50px,#fbe3ea 0%,transparent 60%),radial-gradient(800px 380px at 5% 10%,#e8f2e8 0%,transparent 60%)}
+h1,h2{font-family:"Aref Ruqaa","Tajawal",serif;line-height:1.55}
+.topbar{background:var(--leaf-deep);color:#ffeef3;font-size:.83rem;padding:.45rem 1rem;text-align:center}
+header{position:sticky;top:0;z-index:60;background:rgba(253,249,243,.9);backdrop-filter:blur(14px);border-bottom:1px solid #ecdcd9}
+.nav{max-width:1000px;margin:auto;display:flex;align-items:center;gap:.9rem;padding:.6rem 1rem}
+.brand{display:flex;align-items:center;gap:.7rem;font-weight:900;text-decoration:none;color:inherit}
+.brand-mark{width:48px;height:48px;border-radius:50%;overflow:hidden;background:#fff;border:2px solid #fff;box-shadow:0 6px 18px rgba(142,42,74,.3);flex:none}
+.brand-mark img{width:100%;height:100%;object-fit:cover;display:block}
+.lang-toggle{margin-inline-start:auto;background:var(--rose-deep);color:#fff;border:0;border-radius:999px;padding:.55rem 1.1rem;font-weight:800;cursor:pointer}
+.wrap{max-width:1000px;margin:auto;padding:1rem 1rem 3rem}
+.hero{background:var(--card);border-radius:26px;box-shadow:var(--shadow);border:1px solid #f0e2d6;overflow:hidden;margin:1rem 0}
+.hero img{width:100%;height:230px;object-fit:cover;display:block}
+.hero-body{padding:1.6rem}
+.hero-body h1{margin:.2rem 0;color:var(--leaf-deep);font-size:clamp(1.8rem,4vw,2.5rem)}
+.hero-body h1 span{color:var(--rose-deep)}
+.lead{color:#4c443f}
+.section{background:var(--card);border-radius:26px;box-shadow:var(--shadow);padding:1.6rem;border:1px solid #f0e2d6;margin:1.2rem 0;position:relative;overflow:hidden}
+.section::before{content:"";position:absolute;top:0;inset-inline:0;height:6px;background:linear-gradient(90deg,var(--rose),#e9a7b8,var(--leaf),var(--gold));opacity:.7}
+.section h2{margin:.2rem 0 1rem;color:var(--leaf-deep);font-size:1.5rem}
+.section h2 em{color:var(--rose-deep);font-style:normal}
+.grid{display:grid;gap:.8rem;grid-template-columns:repeat(2,1fr)}
+.card{border:1px solid #eee0d6;border-radius:18px;padding:1rem;background:#fffdf8}
+.card.sel{border:2px solid var(--rose-deep);box-shadow:var(--shadow)}
+.card h3{margin:.2rem 0 .4rem;color:var(--leaf-deep)}
+.card p{font-size:.88rem;margin:.3rem 0;color:#4c443f}
+.card .meta{font-size:.78rem;color:var(--muted)}
+.pick{margin-top:.6rem;width:100%;border:1.5px solid var(--rose-deep);background:#fff;color:var(--rose-deep);border-radius:999px;padding:.5rem;font-weight:800;cursor:pointer;font-size:.85rem}
+.pick.on{background:var(--rose-deep);color:#fff}
+label{display:block;font-weight:800;font-size:.88rem;margin:.7rem 0 .25rem;color:var(--leaf-deep)}
+input,select,textarea{width:100%;padding:.7rem .9rem;border-radius:12px;border:1.5px solid #e7cbd3;font-size:1rem;font-family:inherit;background:#fff}
+textarea{min-height:90px;resize:vertical}
+.btnrow{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.2rem}
+.btn{border:0;cursor:pointer;border-radius:999px;padding:.75rem 1.25rem;font-weight:800;font-size:.93rem;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
+.btn-rose{background:linear-gradient(135deg,var(--rose-deep),var(--rose));color:#fff}
+.btn-leaf{background:var(--leaf-deep);color:#fff}
+.notice{background:#fff8e1;border:1px solid #f0df9e;border-radius:14px;padding:.8rem 1rem;font-size:.86rem;margin-top:1rem}
+.summary{background:#f4faf4;border:1px solid #cfe3cf;border-radius:14px;padding:.9rem 1rem;font-size:.88rem;margin-top:1rem;display:none;white-space:pre-line}
+.footer{background:var(--leaf-deep);color:#dfeee6;margin-top:2rem;border-radius:28px 28px 0 0}
+.footer-inner{max-width:1000px;margin:auto;padding:1.6rem 1rem;font-size:.86rem}
+.footer-inner a{color:#fff}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.hero img{height:170px}}
+</style>
+</head>
+<body>
+<div class="topbar" data-i18n="topbar">رايح الطائف</div>
+<header><nav class="nav">
+<a class="brand" href="index.html"><span class="brand-mark"><img src="images/rose.jpg" alt="الورد الطائفي"></span><span data-i18n="brand">مرشد الطائف</span></a>
+<button class="lang-toggle" id="langBtn">EN</button>
+</nav></header>
+
+<div class="wrap">
+<div class="hero">
+<img src="images/hada.jpg" alt="جبال الهدا">
+<div class="hero-body">
+<h1 data-i18n="h1">احجز رحلتك في الطائف</h1>
+<p class="lead" data-i18n="lead">اختر باقتك من الأسفل، املأ بياناتك وموعدك، ثم أرسل طلبك عبر واتساب — نرد عليك بالتأكيد والتفاصيل.</p>
+<div class="btnrow"><a href="index.html" class="btn btn-rose" data-i18n="back">→ عودة للصفحة الرئيسية</a></div>
+</div>
+</div>
+
+<div class="section">
+<h2>✿ <em data-i18n="packs">باقات الرحلات</em></h2>
+<div class="grid" id="packs"></div>
+<div class="notice" data-i18n="price">الأسعار تُحدد عند التواصل حسب الموسم وعدد الأشخاص — لا أسعار وهمية هنا.</div>
+</div>
+
+<div class="section">
+<h2>✎ <em data-i18n="form">نموذج الحجز</em></h2>
+<label data-i18n="lpack">الباقة المختارة</label>
+<select id="fPack"></select>
+<label data-i18n="lname">الاسم الكريم</label>
+<input id="fName" data-i18n-ph="pname" placeholder="مثال: محمد عبدالله">
+<label data-i18n="lphone">رقم الجوال</label>
+<input id="fPhone" type="tel" dir="ltr" data-i18n-ph="pphone" placeholder="05xxxxxxxx">
+<label data-i18n="ldate">تاريخ الرحلة</label>
+<input id="fDate" type="date">
+<label data-i18n="lguests">عدد الأشخاص</label>
+<input id="fGuests" type="number" min="1" max="100" value="2">
+<label data-i18n="lnote">ملاحظات (اختياري)</label>
+<textarea id="fNote" data-i18n-ph="pnote" placeholder="مثال: معنا أطفال، أو نفضل الفترة الصباحية"></textarea>
+<div class="btnrow">
+<button class="btn btn-leaf" id="sendBtn" data-i18n="send">إرسال عبر واتساب</button>
+<button class="btn btn-rose" id="copyBtn" data-i18n="copy">نسخ تفاصيل الحجز</button>
+</div>
+<div class="summary" id="summary"></div>
+</div>
+</div>
+
+<footer class="footer"><div class="footer-inner">
+<div><a href="index.html" data-i18n="fhome">الرئيسية</a> · <a href="about.html" data-i18n="fabout">من نحن</a></div>
+<div data-i18n="f">مرشد الطائف — معلومة نافعة فقط، بلا إعلانات وبلا مبالغة.</div>
+</div></footer>
+
+<script>
+const WHATSAPP_NUMBER="966500000000";
+const STR={
+ar:{topbar:"رايح الطائف",brand:"مرشد الطائف",h1:"احجز رحلتك في الطائف",lead:"اختر باقتك من الأسفل، املأ بياناتك وموعدك، ثم أرسل طلبك عبر واتساب — نرد عليك بالتأكيد والتفاصيل.",back:"→ عودة للصفحة الرئيسية",packs:"باقات الرحلات",price:"الأسعار تُحدد عند التواصل حسب الموسم وعدد الأشخاص — لا أسعار وهمية هنا.",form:"نموذج الحجز",lpack:"الباقة المختارة",lname:"الاسم الكريم",pname:"مثال: محمد عبدالله",lphone:"رقم الجوال",pphone:"05xxxxxxxx",ldate:"تاريخ الرحلة",lguests:"عدد الأشخاص",lnote:"ملاحظات (اختياري)",pnote:"مثال: معنا أطفال، أو نفضل الفترة الصباحية",send:"إرسال عبر واتساب",copy:"نسخ تفاصيل الحجز",copied:"تم نسخ تفاصيل الحجز — الصقها في أي محادثة.",fill:"فضلاً أكمل: الاسم ورقم الجوال والتاريخ.",fhome:"الرئيسية",fabout:"من نحن",f:"مرشد الطائف — معلومة نافعة فقط، بلا إعلانات وبلا مبالغة.",choose:"اختر باقتك من الأعلى بالضغط على زر الباقة."},
+en:{topbar:"Going to Taif",brand:"Taif Guide",h1:"Book your Taif trip",lead:"Pick a package below, fill in your details and date, then send your request via WhatsApp — we reply with confirmation and details.",back:"→ Back to home",packs:"Trip packages",price:"Prices are set when you contact us, by season and group size — no fake prices here.",form:"Booking form",lpack:"Chosen package",lname:"Full name",pname:"e.g. Mohammed Abdullah",lphone:"Mobile number",pphone:"05xxxxxxxx",ldate:"Trip date",lguests:"Guests",lnote:"Notes (optional)",pnote:"e.g. kids with us, morning preferred",send:"Send via WhatsApp",copy:"Copy booking details",copied:"Booking details copied — paste them anywhere.",fill:"Please complete: name, mobile and date.",fhome:"Home",fabout:"About",f:"Taif Guide — useful facts only, no ads, no hype.",choose:"Choose your package above first."}};
+const PACKS=[
+{t:{ar:"باقة الورد الموسمية",en:"Seasonal Rose Package"},d:{ar:"مزرعة ورد فجراً مع مشاهدة التقطير، ثم جولة في الهدا أو الشفا. متاحة في موسم الورد (أبريل–مايو) فقط.",en:"Rose farm at dawn with live distilling, then a Hada or Shafa tour. Rose season only (April–May)."},m:{ar:"نصف يوم · تناسب العائلات",en:"Half day · family friendly"}},
+{t:{ar:"باقة التاريخ والآثار",en:"History & Heritage Package"},d:{ar:"قصر شبرا وبيت الكاتب وسوق عكاظ (أيام المهرجان) مع شرح مبسط لكل موقع.",en:"Shubra Palace, Al-Kateb House and Souq Okaz (festival days) with a simple briefing at each stop."},m:{ar:"يوم كامل · ثقافية",en:"Full day · cultural"}},
+{t:{ar:"باقة الجبل والمغامرة",en:"Mountain & Adventure Package"},d:{ar:"قمة دكا والشفا وتلفريك الهدا مع مشي جبلي خفيف بإرشاد محلي.",en:"Daka peak, Shafa and the Hada cable car with light guided mountain walking."},m:{ar:"يوم كامل · لياقة متوسطة",en:"Full day · moderate fitness"}},
+{t:{ar:"اليوم العائلي",en:"Family Day Package"},d:{ar:"منتزه الردف وسيسد وسوق البلد (عسل وسمن) — إيقاع هادئ يناسب الأطفال وكبار السن.",en:"Rudaf and Saysad parks plus Al-Balad souq (honey & ghee) — a calm pace for kids and elders."},m:{ar:"يوم كامل · هادئة",en:"Full day · relaxed"}}];
+let LANG=localStorage.getItem('taif-lang')||'ar', chosen=-1;
+const t=o=>o[LANG]||o.ar;
+function render(){
+document.documentElement.lang=LANG;document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
+document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(STR[LANG][k]!==undefined)el.textContent=STR[LANG][k];});
+document.querySelectorAll('[data-i18n-ph]').forEach(el=>{const k=el.dataset.i18nPh;if(STR[LANG][k])el.placeholder=STR[LANG][k];});
+document.getElementById('langBtn').textContent=LANG==='ar'?'EN':'عربي';
+document.getElementById('packs').innerHTML=PACKS.map((p,i)=>`<div class="card${chosen===i?' sel':''}"><h3>${t(p.t)}</h3><p>${t(p.d)}</p><div class="meta">${t(p.m)}</div><button class="pick${chosen===i?' on':''}" data-i="${i}">${chosen===i?(LANG==='ar'?'✓ تم الاختيار':'✓ Selected'):(LANG==='ar'?'اختر هذه الباقة':'Choose')}</button></div>`).join('');
+document.querySelectorAll('.pick').forEach(b=>b.onclick=()=>{chosen=+b.dataset.i;syncPack();render();});
+syncPack();
+}
+function syncPack(){const s=document.getElementById('fPack');s.innerHTML=PACKS.map((p,i)=>`<option value="${i}"${chosen===i?' selected':''}>${t(p.t)}</option>`).join('');s.onchange=()=>{chosen=+s.value;render();};}
+function buildMsg(){
+const p=PACKS[chosen]||PACKS[0];
+const L=(a,e)=>LANG==='ar'?a:e;
+return L('طلب حجز رحلة — مرشد الطائف','Trip booking — Taif Guide')
++'\n'+L('الباقة: ','Package: ')+t(p.t)
++'\n'+L('الاسم: ','Name: ')+document.getElementById('fName').value.trim()
++'\n'+L('الجوال: ','Mobile: ')+document.getElementById('fPhone').value.trim()
++'\n'+L('التاريخ: ','Date: ')+document.getElementById('fDate').value
++'\n'+L('الأشخاص: ','Guests: ')+document.getElementById('fGuests').value
++'\n'+L('ملاحظات: ','Notes: ')+(document.getElementById('fNote').value.trim()||'—');
+}
+function valid(){return document.getElementById('fName').value.trim()&&document.getElementById('fPhone').value.trim()&&document.getElementById('fDate').value;}
+document.getElementById('sendBtn').onclick=()=>{
+if(chosen<0){alert(STR[LANG].choose);return;}
+if(!valid()){alert(STR[LANG].fill);return;}
+const m=buildMsg();const s=document.getElementById('summary');s.style.display='block';s.textContent=m;
+window.open('https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(m),'_blank');
+};
+document.getElementById('copyBtn').onclick=async()=>{
+if(chosen<0){alert(STR[LANG].choose);return;}
+if(!valid()){alert(STR[LANG].fill);return;}
+const m=buildMsg();try{await navigator.clipboard.writeText(m);}catch(e){const ta=document.createElement('textarea');ta.value=m;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}
+alert(STR[LANG].copied);
+};
+document.getElementById('langBtn').onclick=()=>{LANG=LANG==='ar'?'en':'ar';localStorage.setItem('taif-lang',LANG);render();};
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}
+render();
+</script>
+</body>
+</html>
