@@ -24,10 +24,12 @@ workbox.setConfig({ modulePathPrefix: './workbox', debug: false });
 
 /* مهم: ارفع REV عند تغيير أي ملف مخزَّن مسبقاً (صفحة أو صورة) حتى يُعاد تحميله
    Important: bump REV whenever a precached file (page or image) changes, so it is re-fetched */
-const REV = 'v10';
+const REV = 'v11';
 const PAGE_CACHE = 'taif-pages-' + REV;        /* نسخ الصفحات للشبكة-أولاً | network-first page copies */
 const FONT_CACHE = 'taif-fonts-' + REV;        /* الخطوط | web fonts */
 const VERSIONED_CACHE = 'taif-versioned-' + REV; /* الملفات ذات الأسماء المتغيّرة | hashed assets */
+const ASSET_CACHE = 'taif-assets-' + REV;      /* بقية ملفات الموقع | other same-origin files */
+const IMAGE_CACHE = 'taif-images-' + REV;      /* الصور الخارجية (ويكيميديا) | external images */
 
 /* مسارات تُستثنى: تسجيل الدخول وOAuth | excluded: login & OAuth */
 const BYPASS = /\/(?:login|log-in|sign-?in|logout|log-out|sign-?out|auth|oauth|authorize|callback|sso|session|account)(?:[/?#]|$)/i;
@@ -41,7 +43,7 @@ const VERSIONED = /\.[0-9a-f]{8,}\.(?:js|css|woff2?|ttf|eot|png|jpe?g|svg|webp|a
 const PAGES = ['index.html', 'overview.html', 'tour.html', 'booking.html', 'restaurants.html',
   'about.html', 'places.html', 'nature.html', 'seasons.html', 'distill.html'];
 
-const ASSETS = ['manifest.webmanifest', 'icon.svg', 'apple-touch-icon.png',
+const ASSETS = ['manifest.webmanifest', 'icon.svg', 'apple-touch-icon.png', 'install-prompt.js',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',
   'images/rose.jpg', 'images/shubra.jpg', 'images/kateb.jpg', 'images/ibnabbas.jpg',
   'images/kou.jpg', 'images/daka.jpg', 'images/hada.jpg', 'images/saysad.jpg'];
@@ -90,7 +92,14 @@ workbox.routing.registerRoute(
   new workbox.strategies.CacheFirst({ cacheName: VERSIONED_CACHE, plugins: [cacheable] })
 );
 
-/* 4) تخزين مسبق كامل: الصفحات + بقية الملفات، يعمل دون اتصال من أول تثبيت
+/* 4) الصور الخارجية (ويكيميديا): التخزين أولاً لتعمل دون اتصال بعد أول عرض
+      external images (Wikimedia): cache-first, so they work offline after the first view */
+workbox.routing.registerRoute(
+  ({ request, url }) => request.destination === 'image' && !sameOrigin(url),
+  new workbox.strategies.CacheFirst({ cacheName: IMAGE_CACHE, plugins: [cacheable] })
+);
+
+/* 5) تخزين مسبق كامل: الصفحات + بقية الملفات، يعمل دون اتصال من أول تثبيت
       full precache: pages + remaining assets, offline from the very first install */
 workbox.precaching.cleanupOutdatedCaches();
 workbox.precaching.precacheAndRoute(
@@ -98,12 +107,21 @@ workbox.precaching.precacheAndRoute(
   { directoryIndex: null, cleanURLs: false } /* لا نُنشئ مسار تنقّل يخالف «الشبكة أولاً» | no navigation route that would fight network-first */
 );
 
+/* 6) أي ملف آخر من نفس الموقع غير مُخزَّن مسبقاً: يُخزَّن عند أول طلب، فلا يبقى شيء خارج العمل دون اتصال
+      any other same-origin file that is not precached: cached on first request, so nothing is left out
+      (يُسجَّل بعد التخزين المسبق حتى تبقى الأولوية للملفات المخزَّنة مسبقاً
+       registered after the precache so precached files keep priority) */
+workbox.routing.registerRoute(
+  ({ request, url }) => sameOrigin(url) && request.mode !== 'navigate' && !BYPASS.test(url.pathname),
+  new workbox.strategies.StaleWhileRevalidate({ cacheName: ASSET_CACHE, plugins: [cacheable] })
+);
+
 /* تنظيف نسخنا القديمة عند تغيير REV | drop our own outdated caches when REV changes */
 self.addEventListener('activate', event => {
-  const keep = new Set([PAGE_CACHE, FONT_CACHE, VERSIONED_CACHE]);
+  const keep = new Set([PAGE_CACHE, FONT_CACHE, VERSIONED_CACHE, ASSET_CACHE, IMAGE_CACHE]);
   event.waitUntil((async () => {
     const keys = await caches.keys();
-    await Promise.all(keys.filter(k => /^taif-(pages|fonts|versioned)-/.test(k) && !keep.has(k)).map(k => caches.delete(k)));
+    await Promise.all(keys.filter(k => /^taif-(pages|fonts|versioned|assets|images)-/.test(k) && !keep.has(k)).map(k => caches.delete(k)));
   })());
 });
 
