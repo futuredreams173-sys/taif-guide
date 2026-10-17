@@ -112,7 +112,6 @@ document.getElementById('cats').innerHTML=CATS.map(c=>{const url='https://www.go
 document.getElementById('tips').innerHTML=TIPS.map(x=>`<div class="card"><h3>${t(x.t)}</h3><p>${t(x.d)}</p></div>`).join('');
 }
 document.getElementById('langBtn').onclick=()=>{LANG=LANG==='ar'?'en':'ar';localStorage.setItem('taif-lang',LANG);render();};
-if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}
 render();
 </script>
 </body>

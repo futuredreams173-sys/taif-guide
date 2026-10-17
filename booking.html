@@ -156,7 +156,6 @@ const m=buildMsg();try{await navigator.clipboard.writeText(m);}catch(e){const ta
 alert(STR[LANG].copied);
 };
 document.getElementById('langBtn').onclick=()=>{LANG=LANG==='ar'?'en':'ar';localStorage.setItem('taif-lang',LANG);render();};
-if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}
 render();
 </script>
 </body>

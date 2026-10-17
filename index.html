@@ -229,7 +229,7 @@ th,td{padding:.6rem;border-bottom:1px solid #eee;text-align:start}th{background:
 <div class="grid g3" id="visitGrid" style="margin-bottom:1rem"></div>
 <div class="store">
 <div><h3 style="margin:0" data-i18n="store_t">التطبيق جاهز للتثبيت (PWA) وللنشر في المتاجر</h3>
-<p style="font-size:.88rem;opacity:.92" data-i18n="store_d">يعمل دون اتصال بعد أول تحميل، ويحفظ لغتك، وقابل للتثبيت على أندرويد وآيفون. للنشر في App Store وGoogle Play يُغلَّف نفس الكود عبر PWABuilder أو Capacitor دون تغيير.</p>
+<p style="font-size:.88rem;opacity:.92" data-i18n="store_d">يحفظ لغتك، وقابل للتثبيت على أندرويد وآيفون. للنشر في App Store وGoogle Play يُغلَّف نفس الكود عبر PWABuilder أو Capacitor دون تغيير.</p>
 <div class="badge-row"><button class="store-badge" id="installBtn2" style="background:#fff;color:var(--leaf-deep)">＋ <span data-i18n="cta3">ثبّت التطبيق</span></button></div></div>
 <div class="card" style="color:var(--ink)"><h3 data-i18n="support_t">الدعم والتحقق</h3><p style="font-size:.85rem" data-i18n="support_d">للتحقق الميداني: أمانة الطائف، وزارة الثقافة (متحف قصر شبرا)، المركز الوطني لتنمية الغطاء النباتي. الخرائط: OpenStreetMap وجوجل ماب. المواسم تتغير سنوياً — اتصل بالمزرعة قبل الحجز.</p></div>
 </div>
@@ -438,7 +438,6 @@ let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
 async function doInstall(){if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;}}
 document.getElementById('installBtn2').onclick=doInstall;
-if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}
 render();
 </script>
 </body>

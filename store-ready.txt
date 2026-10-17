@@ -1,7 +1,7 @@
 # مرشد الطائف — جاهزية App Store / Google Play (v1.0.0)
 
 ## 1) ما تم تنفيذه تقنياً
-- تطبيق ويب تقدمي PWA: يعمل دون اتصال بعد أول تحميل (sw.js + cache).
+- تطبيق ويب قابل للتثبيت (PWA): manifest.webmanifest + أيقونات 192/512/maskable/180.
 - ملف manifest.webmanifest + أيقونة icon.svg (512) + theme-color #8e2a4a.
 - دعم التثبيت: زر "ثبّت التطبيق" يستخدم beforeinstallprompt، وبديل يدوي (إضافة للشاشة الرئيسية).
 - حفظ اللغة في localStorage، واتجاه RTL/LTR تلقائي.
@@ -17,8 +17,8 @@
 ## 3) نصوص المتجر المقترحة (انسخها)
 - الاسم: مرشد الطائف — Taif Rose Guide
 - العنوان الفرعي: تاريخ موثق وطبيعة حية بلا مبالغة
-- الوصف (عربي): مرشد عربي-إنجليزي للطائف: يشرح الأماكن السياحية والأثرية والزراعية بصدق (ماذا سترى، متى تأتي، كم تحتاج)، مع أحدث صور الزوار ومواقع جوجل ماب، ومواسم الورد والفاكهة والعسل، ومسارات الهايكنج بتقييم صادق. يعمل دون اتصال.
-- Description (EN): Honest Arabic–English Taif guide: verified history, farm seasons, hiking safety, Google photos & maps. Offline-capable.
+- الوصف (عربي): مرشد عربي-إنجليزي للطائف: يشرح الأماكن السياحية والأثرية والزراعية بصدق (ماذا سترى، متى تأتي، كم تحتاج)، مع أحدث صور الزوار ومواقع جوجل ماب، ومواسم الورد والفاكهة والعسل، ومسارات الهايكنج بتقييم صادق.
+- Description (EN): Honest Arabic–English Taif guide: verified history, farm seasons, hiking safety, Google photos & maps.
 - الكلمات: Taif, rose, الطائف, الورد الطائفي, hiking, السعودية
 - الفئة: Travel / Education. العمر: 4+.
 

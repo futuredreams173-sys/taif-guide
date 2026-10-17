@@ -106,7 +106,7 @@ const GOALS=[
 {t:{ar:"تعريف موسمي",en:"Seasonal guide"},d:{ar:"مواسم الورد والفاكهة والعسل بتواريخ تقريبية صادقة.",en:"Rose, fruit and honey seasons with honest approximate dates."}},
 {t:{ar:"سلامة الزائر",en:"Visitor safety"},d:{ar:"تحذيرات واضحة للمسارات والسيول والضباب.",en:"Clear warnings for trails, floods and fog."}}];
 const FAQS=[
-{q:{ar:"هل يعمل التطبيق دون إنترنت؟",en:"Does the app work offline?"},a:{ar:"نعم بعد أول تحميل: الصفحات والصور والنصوص محفوظة في جهازك. الخرائط المدمجة وروابط جوجل تحتاج اتصالاً.",en:"Yes, after the first load: pages, photos and texts are saved on your device. Embedded maps and Google links need connection."}},
+{q:{ar:"هل يعمل التطبيق دون إنترنت؟",en:"Does the app work offline?"},a:{ar:"لا، يحتاج التطبيق اتصالاً بالإنترنت لعرض الصفحات؛ الحفظ دون اتصال غير مفعّل في هذه النسخة.",en:"No, the app needs an internet connection to display pages; offline caching is not enabled in this version."}},
 {q:{ar:"كيف أثبّت التطبيق على جوالي؟",en:"How do I install it on my phone?"},a:{ar:"أندرويد: قائمة المتصفح (⋮) ثم «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية». آيفون: زر المشاركة ثم «إضافة إلى الشاشة الرئيسية».",en:"Android: browser menu (⋮) then Install app or Add to Home Screen. iPhone: Share button then Add to Home Screen."}},
 {q:{ar:"من أين صور الأماكن؟",en:"Where are the photos from?"},a:{ar:"صورة الورد الطائفي خاصة بالمشروع، وبقية الصور من Wikimedia Commons بترخيص حر (CC BY / CC BY-SA) مع اسم المصور أسفل كل صورة.",en:"The Taif rose photo is project-owned; the rest are freely licensed Wikimedia Commons photos (CC BY / CC BY-SA) credited under each photo."}},
 {q:{ar:"هل المواعيد والأسعار دقيقة؟",en:"Are times and prices accurate?"},a:{ar:"تقريبية وتتغير كل سنة: المواسم تتحرك أسبوعين، والمعامل تُغلق للصيانة. اتصل بالمزرعة أو المعمل قبل الذهاب.",en:"Approximate and shifting yearly: seasons move by weeks, factories close for maintenance. Call ahead before going."}},
@@ -122,7 +122,6 @@ document.getElementById('goals').innerHTML=GOALS.map(g=>`<div class="card"><h3>$
 document.getElementById('faqs').innerHTML=FAQS.map(f=>`<details><summary>${t(f.q)}</summary><p>${t(f.a)}</p></details>`).join('');
 }
 document.getElementById('langBtn').onclick=()=>{LANG=LANG==='ar'?'en':'ar';localStorage.setItem('taif-lang',LANG);render();};
-if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}
 render();
 </script>
 </body>
