@@ -112,6 +112,10 @@ document.getElementById('cats').innerHTML=CATS.map(c=>{const url='https://www.go
 document.getElementById('tips').innerHTML=TIPS.map(x=>`<div class="card"><h3>${t(x.t)}</h3><p>${t(x.d)}</p></div>`).join('');
 }
 document.getElementById('langBtn').onclick=()=>{LANG=LANG==='ar'?'en':'ar';localStorage.setItem('taif-lang',LANG);render();};
+/* التسجيل لا يعمل في بيئة التطوير ولا داخل إطار المعاينة | not registered in a dev environment nor inside the preview frame */
+if('serviceWorker' in navigator&&window.self===window.top&&location.protocol.startsWith('http')&&!/^(localhost|127\.0\.0\.1|\[::1\]|0\.0\.0\.0)$/i.test(location.hostname)){
+window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
+}
 render();
 </script>
 </body>

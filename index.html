@@ -438,6 +438,10 @@ let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
 async function doInstall(){if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;}}
 document.getElementById('installBtn2').onclick=doInstall;
+/* التسجيل لا يعمل في بيئة التطوير ولا داخل إطار المعاينة | not registered in a dev environment nor inside the preview frame */
+if('serviceWorker' in navigator&&window.self===window.top&&location.protocol.startsWith('http')&&!/^(localhost|127\.0\.0\.1|\[::1\]|0\.0\.0\.0)$/i.test(location.hostname)){
+window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
+}
 render();
 </script>
 </body>

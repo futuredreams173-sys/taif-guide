@@ -156,6 +156,10 @@ const m=buildMsg();try{await navigator.clipboard.writeText(m);}catch(e){const ta
 alert(STR[LANG].copied);
 };
 document.getElementById('langBtn').onclick=()=>{LANG=LANG==='ar'?'en':'ar';localStorage.setItem('taif-lang',LANG);render();};
+/* التسجيل لا يعمل في بيئة التطوير ولا داخل إطار المعاينة | not registered in a dev environment nor inside the preview frame */
+if('serviceWorker' in navigator&&window.self===window.top&&location.protocol.startsWith('http')&&!/^(localhost|127\.0\.0\.1|\[::1\]|0\.0\.0\.0)$/i.test(location.hostname)){
+window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
+}
 render();
 </script>
 </body>
