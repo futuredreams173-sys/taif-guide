@@ -130,6 +130,7 @@ th,td{padding:.6rem;border-bottom:1px solid #eee;text-align:start}th{background:
 <a href="#distill" data-i18n="n7">التقطير</a>
 <a href="#food" data-i18n="n8">الأكلات والسمن</a>
 <a href="#books" data-i18n="n9">الكتب</a>
+<a href="tribes.html" data-i18n="n10">قبائل الطائف</a>
 <a href="booking.html">احجز رحلتك | Book</a>
 <a href="restaurants.html">المطاعم والكافيهات | Food</a>
 <a href="about.html">من نحن | About</a>
@@ -169,13 +170,6 @@ th,td{padding:.6rem;border-bottom:1px solid #eee;text-align:start}th{background:
 <div class="chips" id="placeFilters"></div>
 <div class="places" id="placesGrid"></div>
 <div class="hint" data-i18n="photo_honesty">تنبيه الصور: الرسوم داخل التطبيق مرسومة بأسلوب مائي مستوحى من الوردة الطائفية الحقيقية، وهي للزينة فقط. الصور التوثيقية الحديثة تجدها عبر زر «صور جوجل» لكل مكان.</div>
-</div>
-
-<div class="section" id="tribes">
-<h2>◈ <em data-i18n="h_tribes">من سكن الطائف؟ القبائل والشخصيات</em></h2>
-<p class="sub" data-i18n="s_tribes">نذكر القبائل الرئيسية الثابتة (ثقيف، بنو سعد، بنو مالك، بلحارث، هذيل، عتيبة) والشخصيات الموثقة، دون ادعاء حصر أو مفاضلة بين الناس.</p>
-<div class="grid g2"><div class="card"><h3 data-i18n="t1">القبائل: الحاضرة والتاريخية</h3><div id="tribesList"></div></div>
-<div class="card"><h3 data-i18n="t2">شخصيات لا تُفهم الطائف بدونها</h3><div id="figuresList"></div></div></div>
 </div>
 
 <div class="section" id="nature">
@@ -239,7 +233,7 @@ th,td{padding:.6rem;border-bottom:1px solid #eee;text-align:start}th{background:
 
 <div class="modal-back" id="modalBack"><div class="modal"><div class="modal-head" id="modalArt"></div><div class="modal-body" id="modalBody"></div></div></div>
 <footer class="footer"><div class="footer-inner">
-<div><a href="about.html" style="color:#fff">من نحن | About — مرشد الطائف · Taif Guide</a> · <a href="booking.html" style="color:#fff">احجز رحلتك | Book</a> · <a href="restaurants.html" style="color:#fff">المطاعم والكافيهات | Food</a></div>
+<div><a href="about.html" style="color:#fff">من نحن | About — مرشد الطائف · Taif Guide</a> · <a href="booking.html" style="color:#fff">احجز رحلتك | Book</a> · <a href="restaurants.html" style="color:#fff">المطاعم والكافيهات | Food</a> · <a href="tribes.html" style="color:#fff">قبائل الطائف | Tribes</a></div>
 <div style="font-weight:900" data-i18n="f1">مرشد الطائف — معلومة نافعة فقط، بلا إعلانات وبلا مبالغة</div>
 <div data-i18n="f2">صُمم بشعار الوردة الطائفية الحقيقية (وردية كأسية ثلاثينية البتلات). النصوص منقحة لتوضيح الهدف من كل قسم. الإصدار 1.0.0.</div>
 </div></footer>
@@ -252,7 +246,7 @@ document.getElementById('roseBotanical').innerHTML='<img src="images/rose.jpg" a
 
 const STR={
 ar:{topbar:"رايح الطائف",brand:"",brand_sub:"",
-n0:"أهداف التطبيق",n1:"الأماكن",n2:"القبائل",n3:"الطبيعة والزراعة",n4:"الهايكنج",n5:"المواسم",n6:"",n7:"التقطير",n8:"الأكلات والسمن",n9:"الكتب",
+n0:"أهداف التطبيق",n1:"الأماكن",n2:"القبائل",n3:"الطبيعة والزراعة",n4:"الهايكنج",n5:"المواسم",n6:"",n7:"التقطير",n8:"الأكلات والسمن",n9:"الكتب",n10:"قبائل الطائف",
 eyebrow:"",h1:"اكتشف الطائف المأنوس",
 lead:"",purpose:"",
 cta1:"اكتشف الطائف المأنوس",cta2:"",cta3:"",
@@ -273,7 +267,7 @@ h_visit:"",store_t:"",store_d:"",privacy:"",support_t:"",support_d:"",
 f1:"",f2:"",
 all:"",easy:"",medium:"",hard:"",detail:"",photos:"",location:"",hours:"",fee:"",best:"",close:"",directions:"",photosTitle:""},
 en:{topbar:"Going to Taif",brand:"",brand_sub:"",
-n0:"",n1:"Places",n2:"Tribes",n3:"Nature & Farms",n4:"Hiking",n5:"Seasons",n6:"",n7:"Distilling",n8:"Food & Ghee",n9:"Books",
+n0:"",n1:"Places",n2:"Tribes",n3:"Nature & Farms",n4:"Hiking",n5:"Seasons",n6:"",n7:"Distilling",n8:"Food & Ghee",n9:"Books",n10:"Taif Tribes",
 eyebrow:"",h1:"Discover beloved Taif",
 lead:"",
 purpose:"",
