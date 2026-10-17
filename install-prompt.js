@@ -5,8 +5,10 @@
    قواعد السلوك | behaviour rules
    - لا تظهر داخل إطار المعاينة، ولا في بيئة التطوير، ولا للصفحات المحلية، ولا إن كان التطبيق مثبّتاً.
      Never shown inside the preview frame, in a dev environment, for local files, or when already installed.
-   - تظهر مرة واحدة في كل جلسة، وتُغلق نهائياً إذا اختار الزائر الإغلاق أو التثبيت.
-     Shown once per session; dismissed for good if the visitor closes it or installs.
+   - تظهر مرة واحدة في كل جلسة. الإغلاق («لاحقاً» أو ✕) يخفيها لهذه الجلسة فقط وتعرض مرة أخرى
+     في زيارة تالية، أما التثبيت فيخفيها نهائياً.
+     Shown once per session. Closing (Later or ✕) hides it for this session only and it may appear
+     again on a later visit; installing hides it for good.
    - كل نص مكتوب بالعربية والإنجليزية | every string exists in Arabic and English
 */
 (function () {

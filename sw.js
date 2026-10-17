@@ -22,9 +22,9 @@ importScripts('./workbox/workbox-sw.js');
    Lock the local module path and force the production build (no dev build, so localhost works too) */
 workbox.setConfig({ modulePathPrefix: './workbox', debug: false });
 
-/* مهم: ارفع REV عند تغيير أي ملف مخزَّن مسبقاً (صفحة أو صورة) حتى يُعاد تحميله
-   Important: bump REV whenever a precached file (page or image) changes, so it is re-fetched */
-const REV = 'v11';
+/* مهم: ارفع REV عند تغيير أي ملف مخزَّن مسبقاً (صفحة أو صورة أو سكربت)، ولو كان تعليقاً فقط، حتى يُحدَّث في أجهزة الزوار
+   Important: bump REV whenever a precached file (page, image or script) changes, even a comment, so it refreshes on users' devices */
+const REV = 'v12';
 const PAGE_CACHE = 'taif-pages-' + REV;        /* نسخ الصفحات للشبكة-أولاً | network-first page copies */
 const FONT_CACHE = 'taif-fonts-' + REV;        /* الخطوط | web fonts */
 const VERSIONED_CACHE = 'taif-versioned-' + REV; /* الملفات ذات الأسماء المتغيّرة | hashed assets */
