@@ -127,11 +127,9 @@ th,td{padding:.6rem;border-bottom:1px solid #eee;text-align:start}th{background:
 <a href="#nature" data-i18n="n3">الطبيعة والزراعة</a>
 <a href="#hiking" data-i18n="n4">الهايكنج</a>
 <a href="#seasons" data-i18n="n5">المواسم</a>
-<a href="#" onclick="openSectionModal('hiking')" data-i18n="n4">الهايكنج</a>
-<a href="#" onclick="openSectionModal('seasons')" data-i18n="n5">المواسم</a>
-<a href="#" onclick="openSectionModal('distill')" data-i18n="n7">التقطير</a>
-<a href="#" onclick="openSectionModal('food')" data-i18n="n8">الأكلات والسمن</a>
-<a href="#" onclick="openSectionModal('books')" data-i18n="n9">الكتب</a>
+<a href="#distill" data-i18n="n7">التقطير</a>
+<a href="#food" data-i18n="n8">الأكلات والسمن</a>
+<a href="#books" data-i18n="n9">الكتب</a>
 <a href="booking.html">احجز رحلتك | Book</a>
 <a href="restaurants.html">المطاعم والكافيهات | Food</a>
 <a href="about.html">من نحن | About</a>
@@ -149,7 +147,7 @@ th,td{padding:.6rem;border-bottom:1px solid #eee;text-align:start}th{background:
 <p class="lead" data-i18n="lead">مرشد الطائف تطبيق عملي بالعربية والإنجليزية. لا يبيعك الوهم: يعرّفك بكل مكان سياحي أو أثري أو زراعي، ويخبرك ماذا سترى فعلاً، ومتى تأتي، وكيف تصل عبر خرائط جوجل، وأين تشاهد أحدث صور الزوار.</p>
 <div class="purpose" data-i18n="purpose">لماذا وُجد هذا التطبيق؟ لأن الزائر يحتاج جواباً واحداً صادقاً: ما الذي يستحق وقتي في الطائف؟ فجمعنا له التاريخ والجبل والمزرعة في مكان واحد، بلغة واضحة ومعلومة قابلة للتحقق.</div>
 <div class="cta-row">
-<button class="btn btn-rose" onclick="openSectionModal('overview')">✿ <span data-i18n="cta1">اكتشف الطائف</span></button>
+<a href="#places" class="btn btn-rose">✿ <span data-i18n="cta1">استكشف الأماكن</span></a>
 </div>
 <div class="mini-stats" id="kpi"></div>
 </div>
@@ -440,26 +438,6 @@ document.getElementById('modalBack').classList.add('open');preferLocalPhotos();c
 }
 function closeModal(){document.getElementById('modalBack').classList.remove('open');}
 function openLinkModal(url,title){const m=document.getElementById('modalBack');const art=document.getElementById('modalArt');const body=document.getElementById('modalBody');art.innerHTML=`<div style="position:relative;height:210px;overflow:hidden;background:#f9e9ee"><svg viewBox="0 0 400 210" style="width:100%;height:100%"><rect width="400" height="210" fill="#fdf3ec"/><text x="200" y="105" text-anchor="middle" font-size="48">📖</text></svg></div>`;body.innerHTML=`<h2 style="margin:.3rem 0">${title}</h2><div class="map-embed" style="height:400px"><iframe src="${url}" style="width:100%;height:100%;border:0;border-radius:16px" loading="lazy"></iframe></div><div class="map-btns"><a class="btn btn-leaf" target="_blank" rel="noopener" href="${url}">${STR[LANG].openb}</a>`;m.classList.add('open');preferLocalPhotos();}
-
-function openSectionModal(id){
-const m=document.getElementById('modalBack');
-const art=document.getElementById('modalArt');
-const body=document.getElementById('modalBody');
-const SECTIONS={
-overview:{icon:'✿',ar:{t:'اكتشف الطائف',d:'مرشد الطائف تطبيق عملي بالعربية والإنجليزية. لا يبيعك الوهم: يعرّفك بكل مكان سياحي أو أثري أو زراعي، ويخبرك ماذا سترى فعلاً، ومتى تأتي، وكيف تصل عبر خرائط جوجل، وأين تشاهد أحدث صور الزوار. لا حشو، لا مبالغة، معلومات قابلة للتحقق.'},en:{t:'Discover Taif',d:'Taif Guide is a practical Arabic–English app. No illusions: each tourist, archaeological or farm site tells you what you will actually see, when to come, how to reach it via Google Maps, and where to see recent visitor photos. No filler, no hype, verifiable info.'}},
-hiking:{icon:'⛰',ar:{t:'المناطق الجبلية',d:'مسارات جبلية حقيقية بتقييم صادق: سهل للعائلات، متوسط للياقة، صعب للقمم. جبل دكا، عقبة الكر، وادي المثناة، سيسد، الردف، وادي عرضة، جبل قرنيت. لا تمشِ وحدك في الضباب، وتجنب الوديان وقت المطر.'},en:{t:'Mountain Areas',d:'Real mountain trails with honest ratings: easy for families, medium needs fitness, hard for peaks. Jabal Daka, Kara Aqaba, Mathnah Valley, Saysad, Rudaf, Wadi Ardah, Jabal Qarnit. Never hike alone in fog; avoid wadis in rain.'}},
-seasons:{icon:'❀',ar:{t:'مواسم الإنتاج الزراعي والمناحل',d:'الورد: أبريل–مايو | المشمش والخوخ: يونيو–يوليو | التين والعنب: يوليو–سبتمبر | الرمان: أغسطس–أكتوبر | العسل الصيفي والسدر: الصيف وأكتوبر–ديسمبر. تواريخ تقريبية ± أسبوعين. اشترِ من المزرعة أو النحّال الموثوق فقط.'},en:{t:'Agricultural & Apiary Seasons',d:'Rose: Apr–May | Apricot/Peach: Jun–Jul | Figs/Grapes: Jul–Sep | Pomegranate: Aug–Oct | Summer/Sidr honey: Summer & Oct–Dec. Approx ±2 weeks. Buy only from farm or trusted beekeeper.'}},
-distill:{icon:'⚗',ar:{t:'معامل تقطير الورد الطائفي',d:'الخطوات: 1) قطف فجراً 2) مرجل نحاسي (الكركه) 3) تكثيف وفصل ماء الورد والدهن 4) تعبئة. مناطق المعامل: الهدا (تجمع القرشي والكمال)، الشفا (معامل عائلية)، وادي محرم والمثناة (قرب المدينة). دهن الورد الأصلي غالٍ جداً — السعر الرخيص مؤشر للشك.'},en:{t:'Taif Rose Distilleries',d:'Steps: 1) Dawn picking 2) Copper still (kirkah) 3) Condensing rose water & oil 4) Bottling. Areas: Hada (cluster), Shafa (family), Wadi Mahram/Mathnah (near city). Real rose oil is very expensive — cheap price is a red flag.'}},
-food:{icon:'🍲',ar:{t:'الأكلات الشعبية في الطائف',d:'السليق (أرز بحليب ولحم/دجاج بسمن بري)، المندي والحنيذ (لحم في حفرة/فرن حجري)، الجريش والمرقوق (قمح مجروش/رقائق عجين)، العريكة والمعصوب (تمر/موز بسمن وعسل)، خبز الملة والتنور، العسل مع السمن البري. ابحث في وسط الطائف، شهار، سوق البلد، الحوية. السمن البري من مراعي الهدا/الشفا/بني سعد — تذوّق قبل الشراء.'},en:{t:'Taif Folk Dishes',d:'Saleeg (milk rice with meat/chicken & wild ghee), Mandi/Haneeth (pit/stone oven meat), Jareesh/Margoug (crushed wheat/dough sheets), Areekah/Masoob (date/banana with ghee & honey), Malla/Tannour bread, honey with wild ghee. Find in downtown, Shehar, Al-Balad, Hawiyah. Wild ghee from Hada/Shafa/Bani Sa\'d — taste before buying.'}},
-books:{icon:'📚',ar:{t:'كتب ومدونات عن الطائف',d:'1) إهداء اللطائف من أخبار الطائف (أرشيف) 2) الطائف في كتب المؤرخين (أرشيف) 3) أوراق مطوية (أرشيف) 4) مرويات غزوة حنين (أرشيف) 5) قبائل الطائف وأشراف الحجاز (أرشيف) 6) عناوين كتب عن تاريخ الطائف — تدوينة شهد السفياني (مدونة). كلها بروابط عاملة تحققنا منها. لا روابط دعائية.'},en:{t:'Books & Blogs on Taif',d:'1) Ihda al-Lataif (Archive) 2) Taif in Historians\' Books (Archive) 3) Awraq Matwiyya (Archive) 4) Hunayn Reports (Archive) 5) Taif Tribes & Sharifs (Archive) 6) Book Titles on Taif History — Shahad Al-Sufyani blog. All links verified. No ads.'}}
-};
-const s=SECTIONS[id];
-if(!s)return;
-const ic=s.icon||'📖';
-art.innerHTML=`<div style="position:relative;height:210px;overflow:hidden;background:#f9e9ee"><svg viewBox="0 0 400 210" style="width:100%;height:100%"><rect width="400" height="210" fill="#fdf3ec"/><text x="200" y="105" text-anchor="middle" font-size="48">${ic}</text></svg></div>`;
-body.innerHTML=`<h2 style="margin:.3rem 0">${t(s.ar.t)}</h2><p style="white-space:pre-line">${t(s.ar.d)}</h2><div class="map-btns"><button class="btn btn-rose" onclick="closeModal()">${STR[LANG].close}</button></div>`;
-document.getElementById('modalBack').classList.add('open');
-}
 document.getElementById('modalBack').addEventListener('click',e=>{if(e.target.id==='modalBack')closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 document.getElementById('langBtn').onclick=()=>{LANG=LANG==='ar'?'en':'ar';localStorage.setItem('taif-lang',LANG);placeFilter='all';hikeFilter='all';render();};
