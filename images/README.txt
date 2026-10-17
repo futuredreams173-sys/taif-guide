@@ -10,6 +10,8 @@ kou.jpg      ← محراب مسجد الكوع — KELANTAN JOTTINGS ‏(CC BY 
 daka.jpg     ← قمة جبل دكا، الشفا — Saanina ‏(CC BY-SA 4.0) عبر Wikimedia
 hada.jpg     ← طريق جبال الهدا — Prof. Mortel ‏(CC BY 2.0) عبر Wikimedia
 saysad.jpg   ← سد سيسد الأثري — Richard Mortel ‏(CC BY 2.0) عبر Wikimedia
+qarnit.webp  ← قمة جبل قرنيت، مرتفعات الطائف (صورة خاصة بالمشروع)
+arfaa.jpg    ← نقوش العرفاء، الطائف — صخرة منقوشة (صورة خاصة بالمشروع)
 
 سطر التوثيق يظهر تحت كل صورة داخل التطبيق.
 لاستبدال أي صورة بصورتك الخاصة: ضع ملف JPG بنفس الاسم.

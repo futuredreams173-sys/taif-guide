@@ -24,7 +24,7 @@ workbox.setConfig({ modulePathPrefix: './workbox', debug: false });
 
 /* مهم: ارفع REV عند تغيير أي ملف مخزَّن مسبقاً (صفحة أو صورة أو سكربت)، ولو كان تعليقاً فقط، حتى يُحدَّث في أجهزة الزوار
    Important: bump REV whenever a precached file (page, image or script) changes, even a comment, so it refreshes on users' devices */
-const REV = 'v12';
+const REV = 'v13';
 const PAGE_CACHE = 'taif-pages-' + REV;        /* نسخ الصفحات للشبكة-أولاً | network-first page copies */
 const FONT_CACHE = 'taif-fonts-' + REV;        /* الخطوط | web fonts */
 const VERSIONED_CACHE = 'taif-versioned-' + REV; /* الملفات ذات الأسماء المتغيّرة | hashed assets */
@@ -46,7 +46,8 @@ const PAGES = ['index.html', 'overview.html', 'tour.html', 'booking.html', 'rest
 const ASSETS = ['manifest.webmanifest', 'icon.svg', 'apple-touch-icon.png', 'install-prompt.js',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',
   'images/rose.jpg', 'images/shubra.jpg', 'images/kateb.jpg', 'images/ibnabbas.jpg',
-  'images/kou.jpg', 'images/daka.jpg', 'images/hada.jpg', 'images/saysad.jpg'];
+  'images/kou.jpg', 'images/daka.jpg', 'images/hada.jpg', 'images/saysad.jpg',
+  'images/qarnit.webp', 'images/arfaa.jpg'];
 
 const sameOrigin = url => url.origin === self.location.origin;
 const cacheable = new workbox.cacheableResponse.CacheableResponsePlugin({ statuses: [0, 200] });
