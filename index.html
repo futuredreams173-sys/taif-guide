@@ -149,21 +149,12 @@ th,td{padding:.6rem;border-bottom:1px solid #eee;text-align:start}th{background:
 <div class="cta-row">
 <a href="overview.html" class="btn btn-rose">✿ <span data-i18n="cta1">اكتشف الطائف المأنوس</span></a>
 </div>
-<div class="mini-stats" id="kpi"></div>
+
 </div>
 </div>
 
 <div class="wrap">
 
-<div class="section" id="goals">
-<h2>◉ <em data-i18n="h_goals">ماذا يفعل هذا التطبيق؟ وما الذي لا يفعله؟</em></h2>
-<p class="sub" data-i18n="s_goals">نلتزم بالوضوح الكامل: هذه أهدافنا المعلنة، وما عدا ذلك لسنا مسؤولين عنه.</p>
-<div class="goals" id="goalsGrid"></div>
-<div class="defs">
-<div class="def"><h3 data-i18n="d1t">ماذا نقصد بمكان سياحي؟</h3><p data-i18n="d1d">موقع مهيأ لاستقبال الزوار (منتزه، تلفريك، مزرعة ورد مفتوحة، سوق). نذكر لك فيه: هل هو مجاني أم برسوم، وهل يناسب العائلات، وأفضل وقت لزيارته.</p></div>
-<div class="def"><h3 data-i18n="d2t">ماذا نقصد بمكان أثري؟</h3><p data-i18n="d2d">موقع له قيمة تاريخية موثقة (قصر، مسجد قديم، نقش صخري، سد). نفرّق بصدق بين الأصل القائم والترميم الحديث والموقع المُعاد إحياؤه، فلا نسمي الجديد قديماً.</p></div>
-<div class="def"><h3 data-i18n="d3t">ماذا نقصد بمكان زراعي؟</h3><p data-i18n="d3d">مزرعة عاملة تنتج الورد أو الفاكهة أو العسل. نذكر موسمها الحقيقي التقريبي، وأن المواعيد تتغير مع الطقس، وأن الشراء الأصيل يكون من المزرعة أو النحّال الموثوق.</p></div>
-</div>
 <div class="rose-info">
 <span id="roseBotanical"></span>
 <div><h3 style="margin:0;color:var(--rose-deep)" data-i18n="rose_t">الورد الطائفي بالأوصاف النباتية الصحيحة</h3>
@@ -305,7 +296,7 @@ f1:"",f2:"",
 all:"",easy:"",medium:"",hard:"",detail:"",photos:"",location:"",hours:"",fee:"",best:"",close:"",directions:"",photosTitle:""}
 };
 let LANG=localStorage.getItem('taif-lang')||'ar', placeFilter='all', hikeFilter='all';
-const GOALS=[];
+
 const PLACES=[
 {icon:"🏛️",hue:340,cat:{ar:"قصر ومتحف",en:"Palace & museum"},name:{ar:"قصر شبرا — المتحف الإقليمي",en:"Shubra Palace — Regional Museum"},loc:{ar:"حي شبرا، وسط الطائف — مكان سياحي وأثري",en:"Shubra, central Taif — tourist & historic"},q:"Shubra Palace Taif",embed:"Shubra+Palace+Taif",slug:"shubra",img:"images/shubra.jpg",fb:"https://commons.wikimedia.org/wiki/Special:FilePath/Shubra_Palace,_1905,_al-Taif,_Saudi_Arabia_(2).jpg?width=800",credit:{ar:"قصر شبرا — تصوير Richard Mortel (CC BY 2.0) عبر Wikimedia",en:"Shubra Palace — photo: Richard Mortel (CC BY 2.0) via Wikimedia"},
 desc:{ar:"تجوّل في قصر حجري عاش فيه الملك عبدالعزيز والملك فيصل، وتأمل الرواشين الخشبية المنحوتة وقاعات تروي تاريخ الطائف والحجاز. لماذا تزوره؟ لأنه أجمل مدخل لفهم الطائف في ساعة أو ساعتين. نصيحة: تعال صباحاً واجمعها مع سوق شبرا المجاور.",en:"Walk through a stone palace once home to Kings Abdulaziz and Faisal, admiring carved wooden mashrabiyas and halls that tell Taif and Hijaz history. Why visit? The finest introduction to Taif in one or two hours. Tip: come in the morning and combine it with the nearby Shubra souq."},
@@ -374,15 +365,15 @@ const AGRI=[{t:{ar:"الهدا",en:"Hada"},w:{ar:"الهدا شمال غرب: ع
 const HIKES=[{n:{ar:"جبل دكا",en:"Jabal Daka"},dif:"hard",d:{ar:"قمة عالية بإطلالة واسعة — مغامرة تستحق، بشرط الالتزام بالمسار والحذر من الضباب المفاجئ.",en:"A high summit with sweeping views — an adventure worth it, staying on track and wary of sudden fog."}},{n:{ar:"عقبة الكر (درب الجمالة)",en:"Kara Aqaba"},dif:"hard",d:{ar:"درب حجري تاريخي شديد الانحدار — خطوات الأجداد تحت قدميك، وقسوة حقيقية على الركب.",en:"A steep historic stone path — ancestors' footsteps beneath you, genuinely hard on knees."}},{n:{ar:"وادي المثناة",en:"Mathnah valley"},dif:"easy",d:{ar:"بساتين وظل وخرير ماء موسمي — نزهة العائلة المثالية.",en:"Orchards, shade and seasonal streams — the ideal family outing."}},{n:{ar:"سيسد",en:"Saysad"},dif:"easy",d:{ar:"حلقات مشي واضحة بين السدر والطلح — ابدأ منها إن كانت أول مرة.",en:"Clear loops among sidr and acacia — start here if it's your first time."}},{n:{ar:"الردف",en:"Rudaf"},dif:"easy",d:{ar:"ممشى حضري آمن حول البحيرة — لأمسية هادئة بلا تجهيز.",en:"A safe urban lakeside walk — for a calm evening, no gear needed."}},{n:{ar:"وادي عرضة",en:"Wadi Ardah"},dif:"medium",d:{ar:"وادٍ يعبر القرى والمدرجات الخضراء — خذ مرشداً في أول مرة لتقرأ المكان.",en:"A valley through villages and green terraces — take a guide first time to read the place."}},{n:{ar:"جبل قرنيت",en:"Jabal Qarnit"},dif:"medium",d:{ar:"قمة صخرية مكسوة بالعرعر بعيداً عن الزحام — لكن المرشد المحلي واجب (المعلومات الموثقة محدودة).",en:"A juniper-clad rocky peak off the crowds — but a local guide is a must (verified info is limited)."}}];
 const SEASONS=[{p:{ar:"الورد (قطف وتقطير)",en:"Rose (pick & distill)"},s:{ar:"أبريل–مايو (~40 يوماً)",en:"April–May (~40 days)"},w:{ar:"الهدا والشفا",en:"Hada & Shafa"},n:{ar:"عِش القطف فجراً والتقطير في يومه — أربعون يوماً في السنة فقط، فاحجز مزرعتك.",en:"Live dawn picking and same-day distilling — only forty days a year, so book your farm."}},{p:{ar:"مشمش وخوخ وبرقوق",en:"Apricot, peach, plum"},s:{ar:"يونيو–يوليو",en:"June–July"},w:{ar:"الهدا والشفا",en:"Hada & Shafa"},n:{ar:"حلاوة الصيف القصيرة — كُلها من المزرعة مباشرة قبل انتهاء الموسم.",en:"Summer's short sweetness — eat it at the farm before the season ends."}},{p:{ar:"تين وعنب",en:"Figs & grapes"},s:{ar:"يوليو–سبتمبر",en:"July–September"},w:{ar:"وج والمثناة",en:"Waj & Mathnah"},n:{ar:"إنتاج محدود — اسأل عن الصنف وذُق قبل أن تشتري.",en:"Limited produce — ask the variety and taste before buying."}},{p:{ar:"رمان طائفي",en:"Taif pomegranate"},s:{ar:"أغسطس–أكتوبر",en:"August–October"},w:{ar:"القيم والمثناة",en:"Qaim & Mathnah"},n:{ar:"حبات الخريف الحمراء — الجودة تتفاوت، فذُق قبل الشراء.",en:"Autumn's red gems — quality varies, so taste first."}},{p:{ar:"عسل صيفي وسدر",en:"Summer & sidr honey"},s:{ar:"الصيف / أكتوبر–ديسمبر",en:"Summer / Oct–Dec"},w:{ar:"الشفا وبني سعد",en:"Shafa & Bani Sa'd"},n:{ar:"عسل يستحق سعره — لكن الغش منتشر، فلا تشترِ إلا من نحّال موثوق.",en:"Honey worth its price — but fraud is rife, so buy only from a trusted keeper."}}];
 const VISIT=[{t:{ar:"أفضل وقت",en:"Best time"},d:{ar:"مارس–مايو لتعيش الورد والاعتدال، وسبتمبر–أكتوبر لموسم الرمان. الصيف جميل لكن مزدحم وأغلى.",en:"March–May to live the roses and mild weather, September–October for pomegranate season. Summer is lovely but crowded and pricier."}},{t:{ar:"الوصول",en:"Getting there"},d:{ar:"مطار الطائف (TIF) للرحلات الداخلية. من جدة ~3 ساعات عبر الهدا، ومن مكة ~1.5 ساعة.",en:"Taif airport (TIF) for domestic flights. Jeddah ~3h via Hada, Makkah ~1.5h."}},{t:{ar:"يوم مقترح",en:"Sample day"},d:{ar:"فجرك في مزرعة ورد في موسمها، وصباحك في قصر شبرا، وعصرك في الردف، وغروبك في الشفا.",en:"Your dawn at a rose farm in season, morning at Shubra Palace, afternoon at Rudaf, sunset at Shafa."}}];
-const KPI=[{v:{ar:"~1700م",en:"~1,700m"},l:{ar:"ارتفاع المدينة",en:"City elevation"}},{v:{ar:"11",en:"11"},l:{ar:"مكاناً موثقاً",en:"Verified places"}},{v:{ar:"أبريل–مايو",en:"Apr–May"},l:{ar:"موسم الورد",en:"Rose season"}},{v:{ar:"v1.0",en:"v1.0"},l:{ar:"جاهز للمتاجر",en:"Store-ready"}}];
+
 const t=o=>o[LANG]||o.ar;
 function render(){
 document.documentElement.lang=LANG;document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
 document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(STR[LANG][k]!==undefined)el.textContent=STR[LANG][k];});
 document.getElementById('langBtn').textContent=LANG==='ar'?'EN':'عربي';
 document.getElementById('searchPlaces').placeholder=LANG==='ar'?'ابحث باسم المكان: شبرا، عكاظ، الهدا...':'Search by place: Shubra, Okaz, Hada...';
-document.getElementById('kpi').innerHTML=KPI.map(k=>`<div><strong>${k.v[LANG]}</strong><span>${k.l[LANG]}</span></div>`).join('');
-document.getElementById('goalsGrid').innerHTML=GOALS.map(g=>`<div class="goal"><b>${t(g.t)}</b><p>${t(g.d)}</p></div>`).join('');
+
+
 renderPlaces();renderStatic();preferLocalPhotos();cleanEmpties();
 }
 function preferLocalPhotos(){document.querySelectorAll('img[data-local]').forEach(img=>{const test=new Image();test.onload=()=>{img.src=test.src;};test.src=img.dataset.local;});}
@@ -395,7 +386,7 @@ const bs=document.querySelector('.brand span[data-i18n]');if(bs&&!bs.textContent
 const bsm=document.querySelector('.brand small');if(bsm&&!bsm.textContent.trim())hide(bsm);
 document.querySelectorAll('h2').forEach(h=>{const em=h.querySelector('em[data-i18n]');if(em&&!em.textContent.trim()&&!h.textContent.replace(/[✿◉◈❧⛰❀⚗🍲✈]/g,'').trim())hide(h);});
 document.querySelectorAll('.petal-div').forEach(d=>{const s=d.querySelector('span');if(s&&!s.textContent.trim())hide(d);});
-['goalsGrid','visitGrid'].forEach(id=>{const el=document.getElementById(id);if(el&&!el.children.length)hide(el);});
+['visitGrid'].forEach(id=>{const el=document.getElementById(id);if(el&&!el.children.length)hide(el);});
 document.querySelectorAll('.rose-info h3,.rose-info p,.store h3,.store p,.footer-inner div,.card .tag').forEach(el=>{if(!el.textContent.trim()&&!el.querySelector('a,button'))hide(el);});
 document.querySelectorAll('.store .card').forEach(c=>{const t=[...c.querySelectorAll('h3,p')];if(t.length&&t.every(e=>!e.textContent.trim()))hide(c);});
 }
